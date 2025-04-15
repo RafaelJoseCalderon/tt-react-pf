@@ -1,0 +1,17 @@
+/* #region main */
+html {
+    overflow-y: scroll;
+}
+
+html, body, #root {
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html, body, #root {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* #endregion */
