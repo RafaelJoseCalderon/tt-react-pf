@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="footer bg-dark text-light py-4 mt-5">
+    <footer className="footer bg-dark text-light py-4">
       <Container>
         <Row>
           <Col md={4} className="mb-3 mb-md-0">
@@ -14,7 +14,7 @@ function Footer() {
           <Col md={4} className="mb-3 mb-md-0">
             <h6>Navegación</h6>
             <ul className="list-unstyled">
-              <li><Link className="text-light" to="/products">Productos</Link></li>
+              <li><Link className="text-light" to="/">Productos</Link></li>
               <li><Link className="text-light" to="/offers">Ofertas</Link></li>
               <li><Link className="text-light" to="/new-arrivals">Novedades</Link></li>
               <li><Link className="text-light" to="/about">Sobre nosotros</Link></li>

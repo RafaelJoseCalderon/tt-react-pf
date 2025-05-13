@@ -9,17 +9,20 @@ import NewArrivals from "./pages/new_arrivals";
 import Contact from "./pages/contact";
 import About from "./pages/about";
 
+import NotFound from "./pages/not_found.jsx";
+
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <main>
         <Routes>
-          <Route path="/products" element={<Products />} />
+          <Route index element={<Products />} />
           <Route path="offers" element={<Offers />} />
           <Route path="new-arrivals" element={<NewArrivals />} />
           <Route path="about" element={<Contact />} />
           <Route path="contact" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
