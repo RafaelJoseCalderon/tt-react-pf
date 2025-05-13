@@ -1,13 +1,29 @@
-import Header from './components/header';
-import Footer from './components/footer';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Header from "./components/header";
+import Footer from "./components/footer";
+
+import Products from "./pages/products";
+import Offers from "./pages/offers";
+import NewArrivals from "./pages/new_arrivals";
+import Contact from "./pages/contact";
+import About from "./pages/about";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <main>body</main>
+      <main>
+        <Routes>
+          <Route path="/products" element={<Products />} />
+          <Route path="offers" element={<Offers />} />
+          <Route path="new-arrivals" element={<NewArrivals />} />
+          <Route path="about" element={<Contact />} />
+          <Route path="contact" element={<About />} />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 

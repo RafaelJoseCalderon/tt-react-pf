@@ -1,4 +1,5 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -13,9 +14,11 @@ function Footer() {
           <Col md={4} className="mb-3 mb-md-0">
             <h6>Navegación</h6>
             <ul className="list-unstyled">
-              <li><a href="/about" className="text-light">Sobre nosotros</a></li>
-              <li><a href="/contact" className="text-light">Contacto</a></li>
-              <li><a href="/faq" className="text-light">Preguntas frecuentes</a></li>
+              <li><Link className="text-light" to="/products">Productos</Link></li>
+              <li><Link className="text-light" to="/offers">Ofertas</Link></li>
+              <li><Link className="text-light" to="/new-arrivals">Novedades</Link></li>
+              <li><Link className="text-light" to="/about">Sobre nosotros</Link></li>
+              <li><Link className="text-light" to="/contact">Contacto</Link></li>
             </ul>
           </Col>
 
