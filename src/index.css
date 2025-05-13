@@ -27,3 +27,7 @@ main {
 }
 
 /* #endregion */
+
+.vh-75 {
+    height: 75vh !important
+}

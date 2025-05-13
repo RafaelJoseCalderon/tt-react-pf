@@ -20,8 +20,8 @@ function App() {
           <Route index element={<Products />} />
           <Route path="offers" element={<Offers />} />
           <Route path="new-arrivals" element={<NewArrivals />} />
-          <Route path="about" element={<Contact />} />
-          <Route path="contact" element={<About />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
