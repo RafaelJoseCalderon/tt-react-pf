@@ -1,15 +1,25 @@
+import { useState, useEffect } from "react";
+
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 // import { FaShoppingCart, FaUser } from "react-icons/fa";
 // import "./Header.css"; // opcional
 
 const Header = () => {
+  const [expanded, setExpanded] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [location.pathname]);
+
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" className="py-3 sticky-top shadow">
+      <Navbar expanded={expanded} bg="dark" variant="dark" expand="lg" className="py-3 sticky-top shadow">
         <Container>
-          <Navbar.Brand as={Link} to="/">TiendaFerpecta</Navbar.Brand>
-          <Navbar.Toggle aria-controls="main-navbar" />
+          <Navbar.Brand as={Link} to="/">TF</Navbar.Brand>
+          <Navbar.Toggle onClick={() => setExpanded(!expanded)} aria-controls="main-navbar" />
           <Navbar.Collapse id="main-navbar">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">Productos</Nav.Link>
