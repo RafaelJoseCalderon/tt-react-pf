@@ -28,6 +28,38 @@ main {
 
 /* #endregion */
 
-.vh-75 {
-    height: 75vh !important
+.spinner-border {
+    height: 5rem;
+    width: 5rem;
+}
+
+.card img {
+    height: 12.5rem;
+    padding: 1.5rem;
+    object-fit: contain;
+}
+
+.box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1.5rem;
+
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+}
+
+.box {
+    box-shadow: 0 .25rem .25rem rgba(0, 0, 0, .075);
+
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    transition: transform 0.2s;
+    transition-timing-function: linear;
+}
+
+.box:hover {
+    -webkit-transform: scale(1.025);
+    -ms-transform: scale(1.025);
+    transform: scale(1.025);
 }
