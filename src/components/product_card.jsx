@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const { id } = product;
 
-  const more_details = () => navigate(`product/${id}`);
+  const more_details = () => navigate(`/product/${id}`);
 
   return (
     <Card className="shadow-sm box">
