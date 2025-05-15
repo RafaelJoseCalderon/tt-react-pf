@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import Products from "./pages/products";
 import Offers from "./pages/offers";
 import NewArrivals from "./pages/new_arrivals";
+import Product from "./pages/product.jsx";
 import Contact from "./pages/contact";
 import About from "./pages/about";
 
@@ -20,6 +21,7 @@ function App() {
           <Route index element={<Products />} />
           <Route path="offers" element={<Offers />} />
           <Route path="new-arrivals" element={<NewArrivals />} />
+          <Route path="product/:id" element={<Product />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

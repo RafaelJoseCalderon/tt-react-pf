@@ -63,3 +63,10 @@ main {
     -ms-transform: scale(1.025);
     transform: scale(1.025);
 }
+
+.product-image {
+    max-height: 500px;
+    object-fit: contain;
+    padding: 1.5rem;
+    width: 100%;
+}

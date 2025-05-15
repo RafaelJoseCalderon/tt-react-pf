@@ -1,6 +1,6 @@
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 
-const Loading = ({ text = 'Cargando...' }) => {
+const Loading = ({ text = "Cargando..." }) => {
   return (
     <Container fluid className="vh-100 d-flex justify-content-center align-items-center bg-light">
       <Row>
