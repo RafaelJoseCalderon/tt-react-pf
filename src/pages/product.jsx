@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 import Loading from "../components/loading";
+import { productServices } from '../services/products';
 
 const Product = () => {
   const { id } = useParams();
@@ -11,19 +12,15 @@ const Product = () => {
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(false);
 
+  // seria conveniente usar el gancho de react router para
+  // no hacer dos solicitudes a la api, en el modo desarrollo
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        setProduct(data);
-        setLoaded(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoaded(true);
-      });
+    productServices(id).then(({ data, error }) => {
+      setProduct(data);
+      setError(error);
+      setLoaded(false);
+    });
   }, []);
-
 
   if (loaded) return <Loading />;
   if (error) return <p>{error}</p>;

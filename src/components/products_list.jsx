@@ -3,23 +3,21 @@ import { Container } from "react-bootstrap";
 
 import Loading from "./loading";
 import ProductCard from "./product_card";
+import { productsServices } from '../services/products';
 
 const ProductsList = ({ title, category }) => {
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
+  // seria conveniente usar el gancho de react router para
+  // no hacer dos solicitudes a la api, en el modo desarrollo
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${category ? `category/${category}` : ""}`)
-      .then(response => response.json())
-      .then(data => {
-        setProducts(data);
-        setLoaded(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoaded(true);
-      });
+    productsServices(category).then(({ data, error }) => {
+      setProducts(data);
+      setError(error);
+      setLoaded(false);
+    });
   }, []);
 
   if (loaded) return <Loading />;
