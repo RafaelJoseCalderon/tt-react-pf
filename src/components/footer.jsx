@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-dark text-light py-4">
+    <footer className="footer bg-light text-dark py-4">
       <Container>
         <Row>
           <Col md={4} className="mb-3 mb-md-0">
@@ -14,25 +14,25 @@ const Footer = () => {
           <Col md={4} className="mb-3 mb-md-0">
             <h6>Navegación</h6>
             <ul className="list-unstyled">
-              <li><Link className="text-light" to="/">Productos</Link></li>
-              <li><Link className="text-light" to="/offers">Ofertas</Link></li>
-              <li><Link className="text-light" to="/new-arrivals">Novedades</Link></li>
-              <li><Link className="text-light" to="/about">Sobre nosotros</Link></li>
-              <li><Link className="text-light" to="/contact">Contacto</Link></li>
+              <li><Link className="text-dark" to="/">Productos</Link></li>
+              <li><Link className="text-dark" to="/offers">Ofertas</Link></li>
+              <li><Link className="text-dark" to="/new-arrivals">Novedades</Link></li>
+              <li><Link className="text-dark" to="/about">Sobre nosotros</Link></li>
+              <li><Link className="text-dark" to="/contact">Contacto</Link></li>
             </ul>
           </Col>
 
           <Col md={4}>
             <h6>Síguenos</h6>
             <div className="d-flex gap-3">
-              <a href="#" className="text-light">Facebook</a>
-              <a href="#" className="text-light">Instagram</a>
-              <a href="#" className="text-light">Twitter</a>
+              <a href="#" className="text-dark"><i className="bi bi-facebook"></i></a>
+              <a href="#" className="text-dark"><i className="bi bi-instagram"></i></a>
+              <a href="#" className="text-dark"><i className="bi bi-twitter"></i></a>
             </div>
           </Col>
         </Row>
 
-        <hr className="border-top border-light mt-4" />
+        <hr className="border-top border-dark mt-4" />
         <p className="text-center mb-0">&copy; 2025 TiendaFerpecta. Todos los derechos reservados.</p>
       </Container>
     </footer>

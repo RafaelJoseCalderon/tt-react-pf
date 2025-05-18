@@ -1,4 +1,3 @@
-
 const url_base = "https://fakestoreapi.com/products";
 
 const productsServices = (category) => {

@@ -5,7 +5,7 @@ const SummaryCart = ({ items }) => {
   const total = (summation / 100).toFixed(2);
 
   return (
-    <Card>
+    <Card className="sticky-md-top">
       <Card.Body>
         <Card.Title>Resumen</Card.Title>
         <Card.Text>Total: <strong>${total}</strong></Card.Text>

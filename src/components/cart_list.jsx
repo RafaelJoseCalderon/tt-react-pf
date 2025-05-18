@@ -11,7 +11,9 @@ const CartList = ({ items, remove }) => {
           <Card.Text>${((item.price * item.quantity) / 100).toFixed(2)}</Card.Text>
         </Card.Body>
 
-        <Button variant="danger" onClick={() => remove(item.id)}>T</Button>
+        <Button variant="danger" onClick={() => remove(item.id)}>
+          <i className="bi bi-trash"></i>
+        </Button>
       </Card>
     )}
   </>);
