@@ -5,12 +5,14 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/loading";
 import { productServices } from '../services/products';
 
-const Product = () => {
+const Product = ({ addItem }) => {
   const { id } = useParams();
 
   const [product, setProduct] = useState();
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(false);
+
+  const addToCart = () => { addItem(product); };
 
   // seria conveniente usar el gancho de react router para
   // no hacer dos solicitudes a la api, en el modo desarrollo
@@ -38,7 +40,7 @@ const Product = () => {
           <Badge bg="secondary" className="mb-2">{product.category}</Badge>
           <p className="mt-3">{product.description}</p>
           <p><strong>Rating:</strong> {product.rating.rate} ⭐ ({product.rating.count} opiniones)</p>
-          <Button variant="primary" size="lg">Agregar al carrito</Button>
+          <Button onClick={addToCart} variant="primary" size="lg">Agregar al carrito</Button>
         </Col>
 
       </Row>

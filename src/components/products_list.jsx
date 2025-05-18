@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+
 import { Container } from "react-bootstrap";
 
 import Loading from "./loading";
 import ProductCard from "./product_card";
 import { productsServices } from '../services/products';
 
-const ProductsList = ({ title, category }) => {
+const ProductsList = ({ title, category, addItem }) => {
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
@@ -28,7 +29,7 @@ const ProductsList = ({ title, category }) => {
       <h1>{title}</h1>
       <div className="box-container">
         {products.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} addItem={addItem} />
         ))}
       </div>
     </Container>

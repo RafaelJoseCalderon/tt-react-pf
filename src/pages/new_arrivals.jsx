@@ -1,10 +1,11 @@
 import ProductsList from "../components/products_list";
 
-const NewArrivals = () => {
+const NewArrivals = ({ addItem }) => {
   return (
     <ProductsList
       title={"Novedades"}
       category="jewelery"
+      addItem={addItem}
     />
   );
 };
