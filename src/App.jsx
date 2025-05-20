@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PrivateRute from "./components/private_route";
 
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -13,6 +14,8 @@ import ShopingCart from "./pages/shopping_cart";
 import Contact from "./pages/contact";
 import About from "./pages/about";
 
+import Login from "./pages/login";
+import Admin from "./pages/admin";
 import NotFound from "./pages/not_found";
 
 function App() {
@@ -45,8 +48,15 @@ function App() {
           <Route path="new-arrivals" element={<NewArrivals addItem={addItem} />} />
           <Route path="product/:id" element={<Product addItem={addItem} />} />
           <Route path="cart" element={<ShopingCart items={items} delToCart={delToCart} />} />
+
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+
+          <Route path="login" element={<Login />} />
+          <Route path="admin" element={
+            <PrivateRute><Admin /></PrivateRute>
+          } />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

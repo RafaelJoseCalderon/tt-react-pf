@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 
 const Header = ({ items }) => {
   const [expanded, setExpanded] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
+
+  const isAuth = localStorage.getItem('auth') === 'true';
+
+  const logOut = () => {
+    localStorage.removeItem('auth');
+    navigate('/login');
+  };
 
   useEffect(() => {
     setExpanded(false);
@@ -54,13 +62,23 @@ const Header = ({ items }) => {
                 <i className="d-lg-none icon bi bi-envelope"></i>
                 <span className="mx-2">Contacto</span>
               </Nav.Link>
+
+              {isAuth &&
+                <Nav.Link as={NavLink} to="/admin">Admin</Nav.Link>
+              }
             </Nav>
 
             <Nav>
-              <Nav.Link as={Link} to="/cuenta" className="user-buttom">
-                <i className="icon bi bi-person"></i>
-                <span className="d-lg-none mx-2">Iniciar sesión</span>
-              </Nav.Link>
+              {isAuth ?
+                <Nav.Link onClick={logOut}>
+                  <i className="icon bi bi-box-arrow-right"></i>
+                </Nav.Link>
+                :
+                <Nav.Link as={Link} to="/login" className="user-buttom">
+                  <i className="icon bi bi-person"></i>
+                  <span className="d-lg-none mx-2">Iniciar sesión</span>
+                </Nav.Link>
+              }
             </Nav>
 
           </Navbar.Collapse>
