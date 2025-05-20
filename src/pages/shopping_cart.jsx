@@ -12,7 +12,7 @@ const ShopingCart = ({ items, delToCart }) => {
           <CartList items={items} remove={delToCart} />
         </Col>
         <Col md={4}>
-          <SummaryCart items={items} />
+          <SummaryCart items={items} remove={delToCart} />
         </Col>
       </Row>
     </Container>

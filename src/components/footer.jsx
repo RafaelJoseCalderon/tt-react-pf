@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-light text-dark py-4">
+    <footer className="footer py-4">
       <Container>
         <Row>
           <Col md={4} className="mb-3 mb-md-0">
@@ -14,20 +14,20 @@ const Footer = () => {
           <Col md={4} className="mb-3 mb-md-0">
             <h6>Navegación</h6>
             <ul className="list-unstyled">
-              <li><Link className="text-dark" to="/">Productos</Link></li>
-              <li><Link className="text-dark" to="/offers">Ofertas</Link></li>
-              <li><Link className="text-dark" to="/new-arrivals">Novedades</Link></li>
-              <li><Link className="text-dark" to="/about">Sobre nosotros</Link></li>
-              <li><Link className="text-dark" to="/contact">Contacto</Link></li>
+              <li><Link to="/">Productos</Link></li>
+              <li><Link to="/offers">Ofertas</Link></li>
+              <li><Link to="/new-arrivals">Novedades</Link></li>
+              <li><Link to="/about">Sobre nosotros</Link></li>
+              <li><Link to="/contact">Contacto</Link></li>
             </ul>
           </Col>
 
           <Col md={4}>
             <h6>Síguenos</h6>
             <div className="d-flex gap-3">
-              <a href="#" className="text-dark"><i className="bi bi-facebook"></i></a>
-              <a href="#" className="text-dark"><i className="bi bi-instagram"></i></a>
-              <a href="#" className="text-dark"><i className="bi bi-twitter"></i></a>
+              <a href="#" ><i className="bi bi-facebook"></i></a>
+              <a href="#" ><i className="bi bi-instagram"></i></a>
+              <a href="#" ><i className="bi bi-twitter"></i></a>
             </div>
           </Col>
         </Row>

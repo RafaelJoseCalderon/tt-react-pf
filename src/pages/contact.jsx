@@ -12,7 +12,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Formulario enviado:", { name, email, subject, message });
+    alert("Formulario enviado:", { name, email, subject, message });
 
     setName("");
     setEmail("");
@@ -25,7 +25,7 @@ const Contact = () => {
   return (
     <Container className="my-5">
       <Row className="justify-content-md-center">
-        <Col md={8}>
+        <Col>
           <h2 className="mb-4 text-center">Contáctanos</h2>
           {submitted && <Alert variant="success">¡Mensaje enviado con éxito!</Alert>}
           <Form onSubmit={handleSubmit}>
