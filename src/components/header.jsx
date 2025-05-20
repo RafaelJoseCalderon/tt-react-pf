@@ -84,6 +84,7 @@ const Header = ({ items }) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <div className="under-heading"></div>
     </header>
   );
 };
