@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 import Loading from "./loading";
 import ProductCard from "./product_card";
-import { productsServices } from '../services/products';
+import { productsServices } from "../services/products";
 
 const ProductsList = ({ title, category, addItem }) => {
   const [products, setProducts] = useState([]);

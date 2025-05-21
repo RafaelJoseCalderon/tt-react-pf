@@ -8,11 +8,11 @@ const Header = ({ items }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isAuth = localStorage.getItem('auth') === 'true';
+  const isAuth = localStorage.getItem("auth") === "true";
 
   const logOut = () => {
-    localStorage.removeItem('auth');
-    navigate('/login');
+    localStorage.removeItem("auth");
+    navigate("/login");
   };
 
   useEffect(() => {

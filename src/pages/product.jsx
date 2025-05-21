@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 import Loading from "../components/loading";
-import { productServices } from '../services/products';
+import { productServices } from "../services/products";
 
 const Product = ({ addItem }) => {
   const { id } = useParams();

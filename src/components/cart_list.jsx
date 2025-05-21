@@ -1,4 +1,4 @@
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button } from "react-bootstrap";
 
 const CartList = ({ items, remove }) => {
   return (<>

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import PrivateRute from "./components/private_route";
+import ScrollToTop from "./components/scroll_to_top";
 
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -40,6 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header items={items} />
       <main>
         <Routes>

@@ -1,4 +1,4 @@
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button } from "react-bootstrap";
 
 const SummaryCart = ({ items, remove }) => {
   const summation = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
