@@ -67,7 +67,10 @@ const Header = () => {
               </Nav.Link>
 
               {isAuth &&
-                <Nav.Link as={NavLink} to="/admin">Admin</Nav.Link>
+                <Nav.Link as={NavLink} to="/admin">
+                  <i className="d-lg-none icon bi bi-person-gear"></i>
+                  <span className="mx-2">Admin</span>
+                </Nav.Link>
               }
             </Nav>
 
