@@ -1,6 +1,5 @@
 # Proyecto final - React - Talento Tech
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e07a51b8-92f1-4e83-884e-4de31f6d4701/deploy-status)](https://app.netlify.com/projects/talento-tech-calderon/deploys)
+* link: https://talento-tech-calderon.netlify.app/
 
 ## Alumno
 * Calderón, Rafael José
