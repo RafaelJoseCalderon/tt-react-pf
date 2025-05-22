@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import CartProvider from "./context/cart_context";
 
 import PrivateRute from "./components/private_route";
 import ScrollToTop from "./components/scroll_to_top";
@@ -21,50 +22,33 @@ import Admin from "./pages/admin";
 import NotFound from "./pages/not_found";
 
 function App() {
-  // shopping cart
-  const [items, setItems] = useState([]);
-
-  const addItem = (product) => {
-    setItems(prev => {
-      if (prev.some(item => item.id === product.id)) {
-        return prev;
-      } else {
-        const cents = Math.round(product.price * 100);
-        return [...prev, { ...product, price: cents, quantity: 1 }];
-      }
-    });
-  };
-
-  const delToCart = (id) => {
-    setItems(prev => prev.filter(item => item.id !== id));
-  };
-  // end shopping cart
-
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Header items={items} />
-      <main>
-        <Routes>
-          <Route index element={<Products addItem={addItem} />} />
-          <Route path="offers" element={<Offers addItem={addItem} />} />
-          <Route path="new-arrivals" element={<NewArrivals addItem={addItem} />} />
-          <Route path="product/:id" element={<Product addItem={addItem} />} />
-          <Route path="cart" element={<ShopingCart items={items} delToCart={delToCart} />} />
+    <CartProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Header />
+        <main>
+          <Routes>
+            <Route index element={<Products />} />
+            <Route path="offers" element={<Offers />} />
+            <Route path="new-arrivals" element={<NewArrivals />} />
+            <Route path="product/:id" element={<Product />} />
+            <Route path="cart" element={<ShopingCart />} />
 
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
 
-          <Route path="login" element={<Login />} />
-          <Route path="admin" element={
-            <PrivateRute><Admin /></PrivateRute>
-          } />
+            <Route path="login" element={<Login />} />
+            <Route path="admin" element={
+              <PrivateRute><Admin /></PrivateRute>
+            } />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-    </BrowserRouter>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

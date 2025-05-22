@@ -1,11 +1,10 @@
 import ProductsList from "../components/products_list";
 
-const Offers = ({ addItem }) => {
+const Offers = () => {
   return (
     <ProductsList
       title={"Ofertas"}
       category="men's clothing"
-      addItem={addItem}
     />
   );
 };

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { CartContext } from "../context/cart_context";
+import { useContext, useEffect, useState } from "react";
 
 import { Container } from "react-bootstrap";
 
@@ -6,7 +7,9 @@ import Loading from "./loading";
 import ProductCard from "./product_card";
 import { productsServices } from "../services/products";
 
-const ProductsList = ({ title, category, addItem }) => {
+const ProductsList = ({ title, category }) => {
+  const { addItem } = useContext(CartContext);
+
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);

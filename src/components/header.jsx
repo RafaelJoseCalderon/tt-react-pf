@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { CartContext } from "../context/cart_context";
+import { useState, useEffect, useContext } from "react";
 
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 
-const Header = ({ items }) => {
+const Header = () => {
+  const { items } = useContext(CartContext);
+
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();

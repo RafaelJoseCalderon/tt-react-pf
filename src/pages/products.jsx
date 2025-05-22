@@ -1,10 +1,9 @@
 import ProductsList from "../components/products_list";
 
-const Products = ({ addItem }) => {
+const Products = () => {
   return (
     <ProductsList
       title={"Productos"}
-      addItem={addItem}
     />
   );
 };
