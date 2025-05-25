@@ -1,5 +1,5 @@
-import { CartContext } from "../context/cart_context";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useCart } from "../context/hooks";
 
 import { Container } from "react-bootstrap";
 
@@ -8,7 +8,7 @@ import ProductCard from "./product_card";
 import { productsServices } from "../services/products";
 
 const ProductsList = ({ title, category }) => {
-  const { addItem } = useContext(CartContext);
+  const { addItem } = useCart();
 
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(true);

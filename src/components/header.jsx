@@ -1,11 +1,11 @@
-import { CartContext } from "../context/cart_context";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
+import { useCart } from "../context/hooks";
 
 const Header = () => {
-  const { items } = useContext(CartContext);
+  const { items } = useCart();
 
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();

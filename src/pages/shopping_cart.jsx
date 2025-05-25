@@ -1,13 +1,11 @@
-import { CartContext } from "../context/cart_context";
-import { useContext } from "react";
-
 import { Container, Row, Col } from "react-bootstrap";
 
 import CartList from "../components/cart_list";
 import SummaryCart from "../components/cart_summary";
+import { useCart } from "../context/hooks";
 
 const ShopingCart = () => {
-  const { items, delItem } = useContext(CartContext);
+  const { items, delItem } = useCart();
 
   return (
     <Container className="my-5">
