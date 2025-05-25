@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 import Loading from "../components/loading";
 import { productServices } from "../services/products";
-import { useCart } from "../context/hooks";
+import { useCart } from "../hooks/use_cart";
 
 const Product = () => {
   const { id } = useParams();

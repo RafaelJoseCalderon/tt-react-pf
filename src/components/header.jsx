@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
-import { useCart } from "../context/hooks";
+import { useCart } from "../hooks/use_cart";
 
 const Header = () => {
   const { items } = useCart();

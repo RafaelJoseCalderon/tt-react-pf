@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useCart } from "../context/hooks";
+import { useCart } from "../hooks/use_cart";
 
 import { Container } from "react-bootstrap";
 

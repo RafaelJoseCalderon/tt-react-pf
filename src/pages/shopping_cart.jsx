@@ -2,7 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import CartList from "../components/cart_list";
 import SummaryCart from "../components/cart_summary";
-import { useCart } from "../context/hooks";
+import { useCart } from "../hooks/use_cart";
 
 const ShopingCart = () => {
   const { items, delItem } = useCart();
