@@ -6,7 +6,7 @@ const loginServices = (username, password) => {
       } else {
         resolve({ data: {}, error: "usuario no encontrado." });
       }
-    }, 0);
+    }, 1000);
   });
 };
 
@@ -18,7 +18,7 @@ const logoutServices = (token) => {
       } else {
         resolve({ data: data, error: "usuario no encontrado." });
       }
-    }, 0);
+    }, 1000);
   });
 };
 

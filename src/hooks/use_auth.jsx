@@ -5,10 +5,12 @@ import { AuthContext } from "../context/auth_context";
 import { loginServices, logoutServices } from "../services/users";
 
 export const useAuth = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, setLoggingIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const login = (username, password) => {
+    setLoggingIn(true);
+
     return loginServices(username, password)
       .then(({ data, error }) => {
         if (!error) {
@@ -16,11 +18,14 @@ export const useAuth = () => {
           navigate("/admin");
         };
 
+        setLoggingIn(false);
         return { data, error };
       });
   };
 
   const logout = () => {
+    setLoggingIn(true);
+
     logoutServices(user)
       .then(({ data, error }) => {
         if (!error) {
@@ -29,6 +34,8 @@ export const useAuth = () => {
         } else {
           alert("no fue posible cerrar cession, intentelo nuevamente");
         }
+
+        setLoggingIn(false);
       });
   };
 

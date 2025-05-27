@@ -21,6 +21,7 @@ import About from "./pages/about";
 import Login from "./pages/login";
 import Admin from "./pages/admin";
 import NotFound from "./pages/not_found";
+import LoadingOverlay from "./components/loading_overlay";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <CartProvider>
           <Header />
           <main>
+            <LoadingOverlay />
             <Routes>
               <Route index element={<Products />} />
               <Route path="offers" element={<Offers />} />
