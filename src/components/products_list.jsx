@@ -14,8 +14,6 @@ const ProductsList = ({ title, category }) => {
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
 
-  // seria conveniente usar el gancho de react router para
-  // no hacer dos solicitudes a la api, en el modo desarrollo
   useEffect(() => {
     productsServices(category).then(({ data, error }) => {
       setProducts(data);

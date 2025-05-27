@@ -1,26 +1,18 @@
 import { useState, useEffect } from "react";
+import { useCart } from "../hooks/use_cart";
+import { useAuth } from "../hooks/use_auth";
 
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
-import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
-import { useCart } from "../hooks/use_cart";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const { items } = useCart();
+  const { logout, isAuth } = useAuth();
 
   const [expanded, setExpanded] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const isAuth = localStorage.getItem("auth") === "true";
-
-  const logOut = () => {
-    localStorage.removeItem("auth");
-    navigate("/login");
-  };
-
-  useEffect(() => {
-    setExpanded(false);
-  }, [location.pathname]);
+  useEffect(() => { setExpanded(false); }, [location.pathname]);
 
   return (
     <header>
@@ -56,15 +48,19 @@ const Header = () => {
                 <span className="mx-2">Novedades</span>
               </Nav.Link>
 
-              <Nav.Link as={NavLink} to="/about">
-                <i className="d-lg-none icon bi bi-people"></i>
-                <span className="mx-2">Sobre nosotros</span>
-              </Nav.Link>
+              {!isAuth &&
+                <>
+                  <Nav.Link as={NavLink} to="/about">
+                    <i className="d-lg-none icon bi bi-people"></i>
+                    <span className="mx-2">Sobre nosotros</span>
+                  </Nav.Link>
 
-              <Nav.Link as={NavLink} to="/contact">
-                <i className="d-lg-none icon bi bi-envelope"></i>
-                <span className="mx-2">Contacto</span>
-              </Nav.Link>
+                  <Nav.Link as={NavLink} to="/contact">
+                    <i className="d-lg-none icon bi bi-envelope"></i>
+                    <span className="mx-2">Contacto</span>
+                  </Nav.Link>
+                </>
+              }
 
               {isAuth &&
                 <Nav.Link as={NavLink} to="/admin">
@@ -76,7 +72,7 @@ const Header = () => {
 
             <Nav>
               {isAuth ?
-                <Nav.Link onClick={logOut}>
+                <Nav.Link onClick={logout}>
                   <i className="icon bi bi-box-arrow-right"></i>
                 </Nav.Link>
                 :

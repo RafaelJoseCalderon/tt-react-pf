@@ -4,7 +4,7 @@ import usePersistentState from "../hooks/use_persistent";
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [items, setItems] = usePersistentState("cartItems", []);
+  const [items, setItems] = usePersistentState("cart-items", []);
 
   const addItem = (product) => {
     setItems((prev) => {

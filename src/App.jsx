@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import CartProvider from "./context/cart_context";
+import AuthProvider from "./context/auth_context";
 
 import PrivateRute from "./components/private_route";
 import ScrollToTop from "./components/scroll_to_top";
@@ -23,32 +24,34 @@ import NotFound from "./pages/not_found";
 
 function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Header />
-        <main>
-          <Routes>
-            <Route index element={<Products />} />
-            <Route path="offers" element={<Offers />} />
-            <Route path="new-arrivals" element={<NewArrivals />} />
-            <Route path="product/:id" element={<Product />} />
-            <Route path="cart" element={<ShopingCart />} />
+    <BrowserRouter>
+      <ScrollToTop />
+      <AuthProvider>
+        <CartProvider>
+          <Header />
+          <main>
+            <Routes>
+              <Route index element={<Products />} />
+              <Route path="offers" element={<Offers />} />
+              <Route path="new-arrivals" element={<NewArrivals />} />
+              <Route path="product/:id" element={<Product />} />
+              <Route path="cart" element={<ShopingCart />} />
 
-            <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} />
+              <Route path="about" element={<About />} />
+              <Route path="contact" element={<Contact />} />
 
-            <Route path="login" element={<Login />} />
-            <Route path="admin" element={
-              <PrivateRute><Admin /></PrivateRute>
-            } />
+              <Route path="login" element={<Login />} />
+              <Route path="admin" element={
+                <PrivateRute><Admin /></PrivateRute>
+              } />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </BrowserRouter>
-    </CartProvider>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+        </CartProvider>
+      </AuthProvider>
+      <Footer />
+    </BrowserRouter>
   );
 }
 

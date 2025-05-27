@@ -1,21 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/use_auth";
 
-import { Container, Form, Button, Card } from "react-bootstrap";
+import { Container, Form, Button, Card, Alert } from "react-bootstrap";
 
 const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
+  const { login } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("auth", "true");
-    navigate("/admin");
+    login(name, password).then(({ error }) => {
+      if (!error) {
+        setName("");
+        setPassword("");
+      }
 
-    setName("");
-    setPassword("");
+      setError(error);
+    });
   };
 
   return (
@@ -38,6 +43,8 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+
+          {error && <Alert variant="danger">{error}</Alert>}
 
           <div className="text-center">
             <Button variant="primary" type="submit">Entrar</Button>

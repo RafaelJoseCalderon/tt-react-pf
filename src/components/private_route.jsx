@@ -1,10 +1,11 @@
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/use_auth";
 
 const PrivateRute = ({ children }) => {
-  const auth = localStorage.getItem("auth") === "true";
+  const { isAuth } = useAuth();
 
   return (
-    auth ? children : <Navigate to="/login" />
+    isAuth ? children : <Navigate to="/login" />
   );
 };
 

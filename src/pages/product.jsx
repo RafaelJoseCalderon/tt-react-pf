@@ -17,8 +17,6 @@ const Product = () => {
 
   const addToCart = () => { addItem(product); };
 
-  // seria conveniente usar el gancho de react router para
-  // no hacer dos solicitudes a la api, en el modo desarrollo
   useEffect(() => {
     productServices(id).then(({ data, error }) => {
       setProduct(data);
