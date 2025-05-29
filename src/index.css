@@ -290,10 +290,19 @@ footer a {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(255, 255, 255, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     pointer-events: auto;
+
+    background-color: rgb(255, 255, 255, 0);
+    animation: fadeInBackground 0.5s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInBackground {
+    to {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
 }
