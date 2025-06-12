@@ -8,35 +8,32 @@ export const useAuth = () => {
   const { user, setUser, setLoggingIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const login = (username, password) => {
+  const login = async (username, password) => {
     setLoggingIn(true);
 
-    return loginServices(username, password)
-      .then(({ data, error }) => {
-        if (!error) {
-          setUser(data);
-          navigate("/admin");
-        };
+    const { data, error } = await loginServices(username, password);
+    if (!error) {
+      setUser(data);
+      navigate("/admin");
+    }
 
-        setLoggingIn(false);
-        return { data, error };
-      });
+    setLoggingIn(false);
+    return { data, error };
   };
 
-  const logout = () => {
+  const logout = async () => {
     setLoggingIn(true);
 
-    logoutServices(user)
-      .then(({ data, error }) => {
-        if (!error) {
-          setUser(data);
-          navigate("/login");
-        } else {
-          alert("no fue posible cerrar cession, intentelo nuevamente");
-        }
+    const { data, error } = await logoutServices(user);
 
-        setLoggingIn(false);
-      });
+    if (!error) {
+      setUser(data);
+      navigate("/login");
+    } else {
+      alert("no fue posible cerrar cession, intentelo nuevamente");
+    }
+
+    setLoggingIn(false);
   };
 
   const isAuth = Object.keys(user).length > 0;

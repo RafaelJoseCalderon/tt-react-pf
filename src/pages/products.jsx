@@ -16,11 +16,15 @@ const Products = ({ title, category }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    productsServices(category).then(({ data, error }) => {
+    setLoaded(true);
+
+    (async () => {
+      const { data, error } = await productsServices.getAllBy(category);
+
       setProducts(data);
       setError(error);
       setLoaded(false);
-    });
+    })();
   }, [category]);
 
   if (loaded) return <Loading />;

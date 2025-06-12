@@ -4,7 +4,7 @@ import { Container, Row, Col, Button, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 import Loading from "../components/loading";
-import { productServices } from "../services/products";
+import { productsServices } from "../services/products";
 import { useCart } from "../hooks/use_cart";
 
 const Product = () => {
@@ -18,11 +18,13 @@ const Product = () => {
   const addToCart = () => { addItem(product); };
 
   useEffect(() => {
-    productServices(id).then(({ data, error }) => {
+    (async () => {
+      const { data, error } = await productsServices.getById(id);
+
       setProduct(data);
       setError(error);
       setLoaded(false);
-    });
+    })();
   }, []);
 
   if (loaded) return <Loading />;

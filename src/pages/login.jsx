@@ -27,15 +27,17 @@ const Login = () => {
     form.handleBlur({ name, value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (form.isValid()) {
-      login(form.values.name, form.values.password)
-        .then(({ error }) => {
-          if (!error) form.reset();
-          setError(error);
-        });
+      const { error } = await login(
+        form.values.name,
+        form.values.password
+      );
+
+      if (!error) form.reset();
+      setError(error);
     }
   };
 
