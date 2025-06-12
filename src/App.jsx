@@ -10,8 +10,6 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 
 import Products from "./pages/products";
-import Offers from "./pages/offers";
-import NewArrivals from "./pages/new_arrivals";
 import Product from "./pages/product";
 import ShopingCart from "./pages/shopping_cart";
 
@@ -33,12 +31,29 @@ function App() {
           <main>
             <LoadingOverlay />
             <Routes>
-              <Route index element={<Products />} />
-              <Route path="offers" element={<Offers />} />
-              <Route path="new-arrivals" element={<NewArrivals />} />
+
+              <Route index element={
+                <Products
+                  title="Productos"
+                />}
+              />
+
+              <Route path="offers" element={
+                <Products
+                  title="Ofertas"
+                  category="men's clothing"
+                />}
+              />
+
+              <Route path="new-arrivals" element={
+                <Products
+                  title="Novedades"
+                  category="jewelery"
+                />}
+              />
+
               <Route path="product/:id" element={<Product />} />
               <Route path="cart" element={<ShopingCart />} />
-
               <Route path="about" element={<About />} />
               <Route path="contact" element={<Contact />} />
 
