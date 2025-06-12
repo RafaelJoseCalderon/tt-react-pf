@@ -5,7 +5,7 @@ import SummaryCart from "../components/cart_summary";
 import { useCart } from "../hooks/use_cart";
 
 const ShopingCart = () => {
-  const { items, delItem } = useCart();
+  const { items, delItem, delAll } = useCart();
 
   return (
     <Container className="my-5">
@@ -15,7 +15,7 @@ const ShopingCart = () => {
           <CartList items={items} remove={delItem} />
         </Col>
         <Col md={4}>
-          <SummaryCart items={items} remove={delItem} />
+          <SummaryCart items={items} removeAll={delAll} />
         </Col>
       </Row>
     </Container>

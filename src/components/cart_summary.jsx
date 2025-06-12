@@ -1,11 +1,11 @@
 import { Card, Button } from "react-bootstrap";
 
-const SummaryCart = ({ items, remove }) => {
+const SummaryCart = ({ items, removeAll }) => {
   const summation = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const total = (summation / 100).toFixed(2);
 
   const buy = () => {
-    items.forEach(item => remove(item.id));
+    removeAll();
     alert("Compra realizada");
   };
 

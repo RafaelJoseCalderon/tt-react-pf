@@ -19,5 +19,9 @@ export const useCart = () => {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  return { items, addItem, delItem };
+  const delAll = () => {
+    setItems([]);
+  };
+
+  return { items, addItem, delItem, delAll };
 };
