@@ -1,8 +1,10 @@
+import { useCart } from "../hooks/use_cart";
+
 import { Container, Row, Col } from "react-bootstrap";
 
+import NotItems from "../components/Not_Items";
 import CartList from "../components/cart_list";
 import SummaryCart from "../components/cart_summary";
-import { useCart } from "../hooks/use_cart";
 
 const ShopingCart = () => {
   const { items, delItem, delAll } = useCart();
@@ -12,7 +14,9 @@ const ShopingCart = () => {
       <h2 className="mb-4">Carrito de Compras</h2>
       <Row>
         <Col md={8} className="cart-container">
-          <CartList items={items} remove={delItem} />
+          {items?.length <= 0 ? <NotItems /> :
+            <CartList items={items} remove={delItem} />
+          }
         </Col>
         <Col md={4}>
           <SummaryCart items={items} removeAll={delAll} />
