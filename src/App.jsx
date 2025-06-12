@@ -25,9 +25,9 @@ import LoadingOverlay from "./components/loading_overlay";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <AuthProvider>
+    <AuthProvider>
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ScrollToTop />
         <CartProvider>
           <Header />
           <main>
@@ -51,9 +51,9 @@ function App() {
             </Routes>
           </main>
         </CartProvider>
-      </AuthProvider>
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
