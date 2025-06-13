@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
+import { useNotification } from "../hooks/use_notification";
 import useForm from "../hooks/use_form";
 
 const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const { showNotification } = useNotification();
   const form = useForm({
     initialValues: {
       name: "",
@@ -41,9 +41,10 @@ const Contact = () => {
       `);
 
       form.reset();
-      setSubmitted(true);
-    } else {
-      setSubmitted(false);
+      showNotification({
+        type: "success",
+        message: "¡Mensaje enviado con éxito!"
+      });
     }
   };
 
@@ -52,7 +53,6 @@ const Contact = () => {
       <Row className="justify-content-md-center">
         <Col>
           <h2 className="mb-4 text-center">Contáctanos</h2>
-          {submitted && <Alert variant="success">¡Mensaje enviado con éxito!</Alert>}
           <Form onSubmit={handleSubmit} noValidate>
             <Form.Group controlId="formName" className="mb-3">
               <Form.Label>Nombre</Form.Label>

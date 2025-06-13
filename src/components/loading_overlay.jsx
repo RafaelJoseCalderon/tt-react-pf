@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Spinner } from 'react-bootstrap';
+import { Spinner } from "react-bootstrap";
 import { useLoggingIn } from "../hooks/use_ logging_in";
 
 const LoadingOverlay = () => {

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { Container, Form, Button, Card, Alert } from "react-bootstrap";
+import { Container, Form, Button, Card } from "react-bootstrap";
 
 import { useAuth } from "../hooks/use_auth";
 import useForm from "../hooks/use_form";
+import { useNotification } from "../hooks/use_notification";
 
 const Login = () => {
-  const [error, setError] = useState("");
+  const { showNotification } = useNotification();
 
   const { login } = useAuth();
   const form = useForm({
@@ -37,7 +37,7 @@ const Login = () => {
       );
 
       if (!error) form.reset();
-      setError(error);
+      showNotification({ type: "danger", message: error });
     }
   };
 
@@ -77,8 +77,6 @@ const Login = () => {
               La contraseña es obligatorio
             </Form.Control.Feedback>
           </Form.Group>
-
-          {error && <Alert variant="danger">{error}</Alert>}
 
           <div className="text-center">
             <Button variant="primary" type="submit">Entrar</Button>
