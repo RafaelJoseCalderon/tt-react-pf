@@ -1,5 +1,7 @@
-import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
+
+import SafeImage from "./safe_image";
 
 const ProductCard = ({ product, addItem }) => {
   const navigate = useNavigate();
@@ -10,7 +12,7 @@ const ProductCard = ({ product, addItem }) => {
 
   return (
     <Card className="shadow-sm box">
-      <Card.Img variant="top" src={product.image} alt={product.title} />
+      <Card.Img as={SafeImage} variant="top" image={product?.image} />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="mb-auto">{product.title}</Card.Title>
         <Card.Text className="mt-3"><strong>Precio:</strong> ${product.price}</Card.Text>

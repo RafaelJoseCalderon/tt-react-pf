@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useCart } from "../hooks/use_cart";
 
 import { Container, Row, Col, Button, Badge } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 
 import Loading from "../components/loading";
+import SafeImage from "../components/safe_image";
+
 import { productsServices } from "../services/products";
-import { useCart } from "../hooks/use_cart";
 
 const Product = () => {
   const { id } = useParams();
@@ -13,7 +15,7 @@ const Product = () => {
 
   const [product, setProduct] = useState();
   const [loaded, setLoaded] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState();
 
   const addToCart = () => { addItem(product); };
 
@@ -33,11 +35,11 @@ const Product = () => {
   return (
     <Container className="my-5">
       <Row>
-        <Col md={6} className="text-center">
-          <img src={product.image} alt={product.title} className="img-fluid product-image" />
+        <Col md={4} className="text-center">
+          <SafeImage image={product?.image} className="product-image" />
         </Col>
 
-        <Col md={6}>
+        <Col md={8}>
           <h2>{product.title}</h2>
           <h4 className="text-success mb-3">${product.price.toFixed(2)}</h4>
           <Badge bg="secondary" className="mb-2">{product.category}</Badge>
