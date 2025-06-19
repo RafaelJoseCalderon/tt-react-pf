@@ -4,7 +4,7 @@ import { useCart } from "../hooks/use_cart";
 import { Container } from "react-bootstrap";
 
 import Loading from "../components/loading";
-import NotItems from "../components/Not_Items";
+import NotItems from "../components/not_items";
 import ProductCard from "../components/product_card";
 
 import { productsServices } from "../services/products";

@@ -2,7 +2,7 @@ import { useCart } from "../hooks/use_cart";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-import NotItems from "../components/Not_Items";
+import NotItems from "../components/not_items";
 import CartList from "../components/cart_list";
 import SummaryCart from "../components/cart_summary";
 
