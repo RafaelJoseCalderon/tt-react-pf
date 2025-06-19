@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProductsContext } from "../context/products_context";
+import { ProductsContext } from "../context/products_resouces";
 
 import { productsServices } from "../services/products";
 import { useNotification } from "./use_notification";

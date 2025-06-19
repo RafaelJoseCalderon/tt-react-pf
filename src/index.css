@@ -191,15 +191,17 @@ footer a {
 
 /* #endregion */
 
-/* #region cart */
+/* #region cart and admin-cart */
+.admin-card,
 .cart {
     display: grid;
-    grid-template-columns: 6.25rem auto 4.70rem;
+    grid-template-columns: 6.25rem 1fr auto;
     align-items: center;
     margin: 0;
     margin-bottom: 0.75rem;
 }
 
+.admin-card img,
 .cart img {
     width: 5.25rem;
     height: 5.25rem;
@@ -207,6 +209,8 @@ footer a {
     object-fit: contain;
 }
 
+.admin-card a,
+.admin-card button,
 .cart button {
     width: 2.5rem;
     height: 2.5rem;
@@ -214,11 +218,30 @@ footer a {
     margin: 0.75rem;
 }
 
+.admin-card a,
+.admin-card button {
+    margin: 0;
+    padding: 0;
+}
+
+.admin-card a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.admin-card a:hover {
+    color: white;
+}
+
+.admin-card .card-body,
 .cart .card-body {
     overflow: hidden;
     padding: 0.5rem;
 }
 
+.admin-card .card-body .card-text,
 .cart .card-body .card-text {
     overflow: hidden;
     white-space: nowrap;
@@ -227,12 +250,24 @@ footer a {
     margin: 0;
 }
 
-.cart .card-body button {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    margin: 0;
-    font-size: 0.5rem;
+.admin-card .buttons {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    justify-content: flex-end;
+}
+
+@media (max-width: 540px) {
+    .admin-card {
+        grid-template-columns: 6.25rem 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .admin-card .buttons {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
 }
 
 @media (min-width:768px) {
