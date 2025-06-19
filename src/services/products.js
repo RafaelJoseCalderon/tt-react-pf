@@ -1,6 +1,8 @@
 import { url_base } from "./config";
 import { safeFetch } from "./tools";
 
+let cont = 999;
+
 const productsServices = {
   async getAllBy(category) {
     const categoryUrl = new Map([
@@ -26,14 +28,15 @@ const productsServices = {
   async create(product) {
     return new Promise((resolve) => {
       console.log(product);
-      resolve({ data: {}, error: null });
+      cont = cont + 1;
+      resolve({ data: { ...product, id: cont }, error: null });
     });
   },
 
   async update(product) {
     return new Promise((resolve) => {
       console.log(product);
-      resolve({ data: {}, error: null });
+      resolve({ data: { ...product }, error: null });
     });
   },
 
