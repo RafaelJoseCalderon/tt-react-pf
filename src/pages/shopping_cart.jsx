@@ -9,12 +9,14 @@ import SummaryCart from "../components/cart_summary";
 const ShopingCart = () => {
   const { items, delItem, delAll } = useCart();
 
+  console.log({ items, delItem, delAll });
+
   return (
     <Container className="my-5">
       <h2 className="mb-4">Carrito de Compras</h2>
       <Row>
         <Col md={8} className="cart-container">
-          {(!items || items?.length === 0) <= 0 ? <NotItems /> :
+          {(!items || items?.length === 0) ? <NotItems /> :
             <CartList items={items} remove={delItem} />
           }
         </Col>
