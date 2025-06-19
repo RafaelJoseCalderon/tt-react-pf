@@ -1,7 +1,7 @@
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
+import { useForm } from "../hooks/use_form";
 import { useNotification } from "../hooks/use_notification";
-import useForm from "../hooks/use_form";
+
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const Contact = () => {
   const { showNotification } = useNotification();

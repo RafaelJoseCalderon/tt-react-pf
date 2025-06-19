@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useForm = ({ initialValues, rules }) => {
+export const useForm = ({ initialValues, rules }) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
 
@@ -52,5 +52,3 @@ const useForm = ({ initialValues, rules }) => {
     annular,
   };
 };
-
-export default useForm;

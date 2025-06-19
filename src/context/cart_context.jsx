@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import usePersistentState from "../hooks/use_persistent";
+import { usePersistentState } from "../hooks/use_persistent";
 
 export const CartContext = createContext();
 
