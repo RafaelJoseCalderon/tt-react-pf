@@ -9,8 +9,6 @@ import SummaryCart from "../components/cart_summary";
 const ShopingCart = () => {
   const { items, delItem, delAll } = useCart();
 
-  console.log({ items, delItem, delAll });
-
   return (
     <Container className="my-5">
       <h2 className="mb-4">Carrito de Compras</h2>
