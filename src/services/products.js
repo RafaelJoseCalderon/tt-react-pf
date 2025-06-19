@@ -3,10 +3,14 @@ import { safeFetch } from "./tools";
 
 const productsServices = {
   async getAllBy(category) {
-    const categoryUrl = category ? `/category/${category}` : "";
+    const categoryUrl = new Map([
+      [undefined, ""],
+      ["offers", "/category/men's clothing"],
+      ["new-arrivals", "/category/jewelery"]
+    ]);
 
     return await safeFetch(
-      /* url    */ `${url_base}${categoryUrl}`,
+      /* url    */ `${url_base}${categoryUrl.get(category)}`,
       /* method */ { method: 'GET' }
     );
   },
@@ -18,20 +22,26 @@ const productsServices = {
     );
   },
 
-  async getByIdOrNull(id) {
-    return;
+
+  async create(product) {
+    return new Promise((resolve) => {
+      console.log(product);
+      resolve({ data: {}, error: null });
+    });
   },
 
-  create(product) {
-    return;
+  async update(product) {
+    return new Promise((resolve) => {
+      console.log(product);
+      resolve({ data: {}, error: null });
+    });
   },
 
-  update(id, product) {
-    return;
-  },
-
-  remove(id) {
-    return;
+  async remove(id) {
+    return new Promise((resolve) => {
+      console.log(id);
+      resolve({ data: {}, error: null });
+    });
   },
 };
 

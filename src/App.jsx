@@ -26,25 +26,18 @@ function App() {
       <LoadingOverlay />
       <Routes>
 
+        {/* Products */}
         <Route index element={
-          <Products
-            title="Productos"
-          />}
+          <Products title="Productos" />}
         />
-
         <Route path="offers" element={
-          <Products
-            title="Ofertas"
-            category="men's clothing"
-          />}
+          <Products title="Ofertas" category="offers" />}
         />
-
         <Route path="new-arrivals" element={
-          <Products
-            title="Novedades"
-            category="jewelery"
-          />}
+          <Products title="Novedades" category="new-arrivals" />}
         />
+        <Route path="product/:id" element={<Product />} />
+        {/* Products */}
 
         <Route path="product/:id" element={<Product />} />
         <Route path="cart" element={<ShopingCart />} />
