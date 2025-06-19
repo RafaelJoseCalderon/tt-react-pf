@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/use_auth";
 
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { NavLink, Link, useLocation } from "react-router-dom";
+import Notification from "./notification";
 
 const Header = ({ children }) => {
   const { items } = useCart();
@@ -14,9 +15,9 @@ const Header = ({ children }) => {
 
   useEffect(() => { setExpanded(false); }, [location.pathname]);
 
-  return (
-    <header>
-      <Navbar fixed="top" expanded={expanded} expand="lg" className="py-3 shadow">
+  return (<>
+    <header className="fixed-top">
+      <Navbar expanded={expanded} expand="lg" className="py-3 shadow">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img className="logo" src="/logo_black.svg" alt="" />
@@ -88,9 +89,10 @@ const Header = ({ children }) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="under-heading"></div>
-      <>{children}</>
+      <Notification />
     </header>
+    <div className="under-heading"></div>
+  </>
   );
 };
 

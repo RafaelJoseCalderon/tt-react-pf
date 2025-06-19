@@ -3,7 +3,6 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import ProductsResouces from "./context/products_resouces";
 import PrivateRute from "./components/private_route";
 
-import Notification from "./components/notification";
 import LoadingOverlay from "./components/loading_overlay";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -23,7 +22,7 @@ import NotFound from "./pages/not_found";
 
 function App() {
   return (<>
-    <Header><Notification /></Header>
+    <Header />
     <main>
       <LoadingOverlay />
       <Routes>

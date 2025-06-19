@@ -14,10 +14,9 @@ const ProductFormAdmin = ({ mode, values, valuesOptions, handleSubmit }) => {
     },
     rules: {
       title: (value) => !value.trim(),
-      price: (value) => !value || value <= 0,
+      price: (value) => !value || isNaN(Number(value)) || Number(value) <= 0,
       description: (value) => !value.trim() || value?.length < 10,
       category: (value) => !value.trim(),
-      image: (value) => !value.trim(),
     }
   });
 
@@ -78,9 +77,11 @@ const ProductFormAdmin = ({ mode, values, valuesOptions, handleSubmit }) => {
                   isInvalid={form.errors?.price}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  step="1.00"
+                  min="0"
                 />
                 <Form.Control.Feedback type="invalid">
-                  El precio debe ser mayor a cero
+                  El precio debe ser un numero valido mayor a cero
                 </Form.Control.Feedback>
               </Form.Group>
 
