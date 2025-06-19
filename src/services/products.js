@@ -1,24 +1,12 @@
-const url_base = "https://fakestoreapi.com/products";
-
-const getdata = async (url) => {
-  try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-
-    return ({ data: data, error: null });
-  } catch (error) {
-    return ({ data: null, error: error });
-  }
-};
+import { url_base } from "./config";
+import { safeFetch } from "./tools";
 
 const categoriesServices = {
   async getAll() {
-    return await getdata(`${url_base}/categories`);
+    return await safeFetch(
+      /* url    */ `${url_base}/categories`,
+      /* method */ { method: 'GET' }
+    );
   },
 
 };
@@ -26,11 +14,18 @@ const categoriesServices = {
 const productsServices = {
   async getAllBy(category) {
     const categoryUrl = category ? `/category/${category}` : "";
-    return await getdata(`${url_base}${categoryUrl}`);
+
+    return await safeFetch(
+      /* url    */ `${url_base}${categoryUrl}`,
+      /* method */ { method: 'GET' }
+    );
   },
 
   async getById(id) {
-    return await getdata(`${url_base}/${id}`);
+    return await safeFetch(
+      /* url    */ `${url_base}/${id}`,
+      /* method */ { method: 'GET' }
+    );
   },
 
   async getByIdOrNull(id) {

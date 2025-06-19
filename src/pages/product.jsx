@@ -8,6 +8,7 @@ import Loading from "../components/loading";
 import SafeImage from "../components/safe_image";
 
 import { productsServices } from "../services/products";
+import ErrorsPromp from "../components/error_promp";
 
 const Product = () => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ const Product = () => {
   }, []);
 
   if (loaded) return <Loading />;
-  if (error) return <p>{error}</p>;
+  if (error) return <ErrorsPromp errors={[error]} />;
 
   return (
     <Container className="my-5">

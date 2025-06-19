@@ -14,7 +14,7 @@ const ShopingCart = () => {
       <h2 className="mb-4">Carrito de Compras</h2>
       <Row>
         <Col md={8} className="cart-container">
-          {items?.length <= 0 ? <NotItems /> :
+          {(!items || items?.length === 0) <= 0 ? <NotItems /> :
             <CartList items={items} remove={delItem} />
           }
         </Col>
