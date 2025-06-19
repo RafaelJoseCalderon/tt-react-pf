@@ -24,7 +24,7 @@ export const useAuth = () => {
   const logout = async () => {
     setLoggingIn(true);
 
-    const { data, error } = await logoutServices(user);
+    const { data, error } = await logoutServices(user.token);
 
     if (!error) {
       setUser(data);
@@ -37,6 +37,7 @@ export const useAuth = () => {
   };
 
   const isAuth = Object.keys(user).length > 0;
+  const isAdmin = isAuth && user?.role === "admin";
 
-  return { user, login, logout, isAuth };
+  return { user, login, logout, isAuth, isAdmin };
 };

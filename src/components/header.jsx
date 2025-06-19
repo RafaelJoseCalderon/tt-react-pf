@@ -7,7 +7,7 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 
 const Header = ({ children }) => {
   const { items } = useCart();
-  const { logout, isAuth } = useAuth();
+  const { logout, isAuth, isAdmin } = useAuth();
 
   const [expanded, setExpanded] = useState(false);
   const location = useLocation();
@@ -22,11 +22,13 @@ const Header = ({ children }) => {
             <img className="logo" src="/logo_black.svg" alt="" />
           </Navbar.Brand>
 
-          <Nav.Link as={Link} to="/cart" className="shoping-cart">
-            <i className="icon bi bi-cart2">
-              <Badge className="badge-cart">{items.length}</Badge>
-            </i>
-          </Nav.Link>
+          {!isAdmin &&
+            <Nav.Link as={Link} to="/cart" className="shoping-cart">
+              <i className="icon bi bi-cart2">
+                <Badge className="badge-cart">{items.length}</Badge>
+              </i>
+            </Nav.Link>
+          }
 
           <Navbar.Toggle onClick={() => setExpanded(!expanded)} aria-controls="main-navbar" />
 
@@ -48,7 +50,7 @@ const Header = ({ children }) => {
                 <span className="mx-2">Novedades</span>
               </Nav.Link>
 
-              {!isAuth &&
+              {!isAdmin &&
                 <>
                   <Nav.Link as={NavLink} to="/about">
                     <i className="d-lg-none icon bi bi-people"></i>
@@ -62,7 +64,7 @@ const Header = ({ children }) => {
                 </>
               }
 
-              {isAuth &&
+              {isAdmin &&
                 <Nav.Link as={NavLink} to="/admin">
                   <i className="d-lg-none icon bi bi-person-gear"></i>
                   <span className="mx-2">Admin</span>
