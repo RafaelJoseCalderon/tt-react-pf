@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react";
-import { Alert, Container } from "react-bootstrap";
-
 import { useNotification } from "../hooks/use_notification";
+
+import { Alert, Container } from "react-bootstrap";
 
 const Notification = () => {
   const [show, setShow] = useState(false);
   const { notification } = useNotification();
 
   useEffect(() => {
-    if (notification.message !== "") {
+    if (notification.message && notification.message !== "") {
       setShow(true);
 
-      const timeout = setTimeout(() => {
-        setShow(false);
-      }, 3000);
-
+      const timeout = setTimeout(() => { setShow(false); }, 3000);
       return () => clearTimeout(timeout);
     }
   }, [notification]);

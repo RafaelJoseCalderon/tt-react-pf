@@ -21,8 +21,7 @@ import NotFound from "./pages/not_found";
 
 function App() {
   return (<>
-    <Header />
-    <Notification />
+    <Header><Notification /></Header>
     <main>
       <LoadingOverlay />
       <Routes>

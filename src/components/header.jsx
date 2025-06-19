@@ -5,7 +5,7 @@ import { useAuth } from "../hooks/use_auth";
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { NavLink, Link, useLocation } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ children }) => {
   const { items } = useCart();
   const { logout, isAuth } = useAuth();
 
@@ -87,6 +87,7 @@ const Header = () => {
         </Container>
       </Navbar>
       <div className="under-heading"></div>
+      <>{children}</>
     </header>
   );
 };
