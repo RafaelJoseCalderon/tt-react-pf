@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useProductsResources } from "../hooks/use_products_resourses";
 import { useProductsActions } from "../hooks/use_products_actions";
 
@@ -9,19 +9,15 @@ import ProductFormAdmin from "../components/product_form_admin";
 const ProductAdmin = ({ mode, title }) => {
   const { categories } = useProductsResources();
   const { getById, create, update } = useProductsActions();
-
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const product = getById(id);
 
   const handleSubmit = (data) => {
     if (mode === "create" && !id) {
       create(data);
-      navigate("/admin");
     } else if (mode === "update" && id) {
       update({ ...data, id: parseInt(id, 10) });
-      navigate("/admin");
     }
   };
 

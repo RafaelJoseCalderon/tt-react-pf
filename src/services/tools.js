@@ -1,36 +1,40 @@
-class ApiError {
+class ApiError extends Error {
   constructor(response, data) {
+    super(data?.error?.message || "Error de API desconocido");
+
     this.type = "ApiError";
     this.status = response.status;
     this.name = "ApiError";
-    this.message = data?.error?.message || "Error Api";
     this.url = response.url;
   }
 }
 
-class SysError {
+class SysError extends Error {
   constructor(error, url) {
+    super(error?.message || "Error del sistema desconocido");
+
     this.type = "SysError";
     this.status = "JIE";
-    this.name = error.name;
-    this.message = error?.message || "Error Sys";
+    this.name = error.name || "SysError";
     this.url = url;
   }
 }
 
-export const safeFetch = async (url, options) => {
+export const controlledFetch = async (url, options) => {
+  let response, data;
+
   try {
-    const response = await fetch(url, options);
-    const data = await response.json();
-
-    if (!response.ok) {
-      const error = new ApiError(response, data);
-      return ({ data: null, error });
-    }
-
-    return ({ data: data, error: null });
+    response = await fetch(url, options);
+    // console.log(response);
+    data = await response.json();
+    // console.log(data);
   } catch (error) {
-    const sysError = new SysError(error, url);
-    return ({ data: null, error: sysError });
+    throw new SysError(error, url);
+  }
+
+  if (response.ok) {
+    return data;
+  } else {
+    throw new ApiError(response, data);
   }
 };

@@ -3,24 +3,22 @@ import { ProductsContext } from "../context/products_resouces";
 
 import { productsServices } from "../services/products";
 import { useNotification } from "./use_notification";
+import { useNavigate } from "react-router-dom";
 
 export const useProductsActions = () => {
-  const { products, setProducts, setError } = useContext(ProductsContext);
+  const { products, setProducts, setLoaded, setError } = useContext(ProductsContext);
   const { showNotification } = useNotification();
+  const navigate = useNavigate();
 
   const getById = (id) => {
     return products.filter(p => p.id == id)[0];
   };
 
-  const notify = (error, okMessage) => {
-    if (!error) {
-      showNotification({ type: "success", message: okMessage });
-    }
-
+  const notify = (error) => {
     if (error?.type === "ApiError") {
       showNotification({
         type: "danger",
-        message: "Error en la operación. Código: " + res.status
+        message: "Error en la operación. Código: " + error.status
       });
     } else {
       setError(error);
@@ -28,24 +26,44 @@ export const useProductsActions = () => {
   };
 
   const create = async (product) => {
-    const { data, error } = await productsServices.create(product);
-
-    setProducts(prev => [...prev, data]);
-    notify(error, "se a creado correctamente");
+    setLoaded(true);
+    try {
+      const data = await productsServices.create(product);
+      setProducts(prev => [...prev, data]);
+      navigate("/admin");
+      showNotification({ type: "success", message: "se a creado correctamente" });
+    } catch (error) {
+      notify(error);
+    } finally {
+      setLoaded(false);
+    }
   };
 
   const update = async (product) => {
-    const { data, error } = await productsServices.update(product);
-
-    setProducts(prev => prev.map(p => (p.id === product.id ? data : p)));
-    notify(error, "se a actualizado correctamente");
+    setLoaded(true);
+    try {
+      const data = await productsServices.update(product);
+      setProducts(prev => prev.map(p => (p.id === product.id ? data : p)));
+      navigate("/admin");
+      showNotification({ type: "success", message: "se a actualizado correctamente" });
+    } catch (error) {
+      notify(error);
+    } finally {
+      setLoaded(false);
+    }
   };
 
   const remove = async (id) => {
-    const { error } = await productsServices.remove(id);
-
-    if (!error) setProducts(prev => prev.filter(p => p.id !== id));
-    notify(error, "se a eliminado correctamente");
+    setLoaded(true);
+    try {
+      await productsServices.remove(id);
+      setProducts(prev => prev.filter(p => p.id !== id));
+      showNotification({ type: "success", message: "se a eliminado correctamente" });
+    } catch (error) {
+      notify(error);
+    } finally {
+      setLoaded(false);
+    }
   };
 
   return { getById, create, update, remove };

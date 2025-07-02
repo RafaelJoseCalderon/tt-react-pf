@@ -31,13 +31,12 @@ const Login = () => {
     e.preventDefault();
 
     if (form.isValid()) {
-      const { error } = await login(
-        form.values.name,
-        form.values.password
-      );
-
-      if (!error) form.reset();
-      showNotification({ type: "danger", message: error });
+      try {
+        await login(form.values.name, form.values.password);
+        form.reset();
+      } catch (error) {
+        showNotification({ type: "danger", message: error.message });
+      }
     }
   };
 

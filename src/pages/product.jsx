@@ -22,11 +22,14 @@ const Product = () => {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await productsServices.getById(id);
-
-      setProduct(data);
-      setError(error);
-      setLoaded(false);
+      try {
+        const data = await productsServices.getById(id);
+        setProduct(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoaded(false);
+      }
     })();
   }, []);
 

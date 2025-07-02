@@ -21,11 +21,14 @@ const Products = ({ title, category }) => {
     setLoaded(true);
 
     (async () => {
-      const { data, error } = await productsServices.getAllBy(category);
-
-      setProducts(data);
-      setError(error);
-      setLoaded(false);
+      try {
+        const data = await productsServices.getAllBy(category);
+        setProducts(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoaded(false);
+      }
     })();
   }, [category]);
 

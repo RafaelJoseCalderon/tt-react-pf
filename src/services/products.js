@@ -1,5 +1,5 @@
 import { url_base } from "./config";
-import { safeFetch } from "./tools";
+import { controlledFetch } from "./tools";
 
 let cont = 999;
 
@@ -11,14 +11,14 @@ const productsServices = {
       ["new-arrivals", "/category/jewelery"]
     ]);
 
-    return await safeFetch(
+    return await controlledFetch(
       /* url    */ `${url_base}${categoryUrl.get(category)}`,
       /* method */ { method: 'GET' }
     );
   },
 
   async getById(id) {
-    return await safeFetch(
+    return await controlledFetch(
       /* url    */ `${url_base}/${id}`,
       /* method */ { method: 'GET' }
     );
@@ -29,21 +29,21 @@ const productsServices = {
     return new Promise((resolve) => {
       console.log(product);
       cont = cont + 1;
-      resolve({ data: { ...product, id: cont }, error: null });
+      resolve({ ...product, id: cont });
     });
   },
 
   async update(product) {
     return new Promise((resolve) => {
       console.log(product);
-      resolve({ data: { ...product }, error: null });
+      resolve({ ...product });
     });
   },
 
   async remove(id) {
     return new Promise((resolve) => {
       console.log(id);
-      resolve({ data: {}, error: null });
+      resolve({});
     });
   },
 };

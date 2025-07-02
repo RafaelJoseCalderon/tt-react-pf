@@ -11,29 +11,29 @@ export const useAuth = () => {
   const login = async (username, password) => {
     setLoggingIn(true);
 
-    const { data, error } = await loginServices(username, password);
-    if (!error) {
+    try {
+      const data = await loginServices(username, password);
       setUser(data);
       navigate("/admin");
+    } catch (error) {
+      throw error;
+    } finally {
+      setLoggingIn(false);
     }
-
-    setLoggingIn(false);
-    return { data, error };
   };
 
   const logout = async () => {
     setLoggingIn(true);
 
-    const { data, error } = await logoutServices(user.token);
-
-    if (!error) {
+    try {
+      const data = await logoutServices(user.token);
       setUser(data);
       navigate("/login");
-    } else {
+    } catch (error) {
       alert("no fue posible cerrar cession, intentelo nuevamente");
+    } finally {
+      setLoggingIn(false);
     }
-
-    setLoggingIn(false);
   };
 
   const isAuth = Object.keys(user).length > 0;

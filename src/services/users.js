@@ -1,29 +1,26 @@
 const loginServices = (username, password) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (username === "admin" && password === "123") {
         resolve({
-          data: {
-            username: username,
-            role: "admin",
-            token: `fake-token-${username}`
-          },
-          error: null
+          username: username,
+          role: "admin",
+          token: `fake-token-${username}`
         });
       } else {
-        resolve({ data: {}, error: "usuario no encontrado." });
+        reject(new Error("usuario no encontrado."));
       }
     }, 1000);
   });
 };
 
 const logoutServices = (token) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (token === "fake-token-admin") {
-        resolve({ data: {}, error: null });
+        resolve({});
       } else {
-        resolve({ data: data, error: "usuario no encontrado." });
+        reject(new Error("usuario no encontrado."));
       }
     }, 1000);
   });

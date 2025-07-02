@@ -12,15 +12,33 @@ const ProductsResouces = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const [product, categories] = await Promise.all([
-        productsServices.getAllBy(),
-        categoriesServices.getAll()
-      ]);
+      const errors = [];
 
-      setProducts(product.data);
-      setCategories(categories.data);
-      setError([product.error, categories.error]);
-      setLoaded(false);
+      try {
+        const [product, categories] = await Promise.allSettled([
+          productsServices.getAllBy(),
+          categoriesServices.getAll()
+        ]);
+
+        if (product.status === 'rejected') {
+          errors.push(product.reason);
+        }
+
+        if (categories.status === 'rejected') {
+          errors.push(categories.reason);
+        }
+
+        if (errors.length === 0) {
+          setProducts(product.value);
+          setCategories(categories.value);
+        } else {
+          setError(errors);
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoaded(false);
+      }
     })();
   }, []);
 
@@ -33,6 +51,7 @@ const ProductsResouces = ({ children }) => {
 
       setProducts,
       setCategories,
+      setLoaded,
       setError,
     }}>
       {children}
