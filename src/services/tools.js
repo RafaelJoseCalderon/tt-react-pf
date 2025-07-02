@@ -25,9 +25,7 @@ export const controlledFetch = async (url, options) => {
 
   try {
     response = await fetch(url, options);
-    // console.log(response);
     data = await response.json();
-    // console.log(data);
   } catch (error) {
     throw new SysError(error, url);
   }
