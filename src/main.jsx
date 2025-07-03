@@ -6,12 +6,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/bootstrap-icons.min.css";
 import "./index.css";
 
-import CartProvider from "./context/cart_context";
-import AuthProvider from "./context/auth_context";
-import NotifProvider from "./context/notification_context.jsx";
+import CartProvider from "./context/cart_provider";
+import AuthProvider from "./context/auth_provider";
+import NotifProvider from "./context/notification_provider";
 import ScrollToTop from "./components/scroll_to_top";
 
-import App from "./App.jsx";
+import App from "./App";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

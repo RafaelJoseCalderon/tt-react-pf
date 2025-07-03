@@ -1,8 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { ProductsContext } from "./products_context";
+import { useEffect, useState } from "react";
 import { productsServices } from "../services/products";
 import { categoriesServices } from "../services/categories";
-
-export const ProductsContext = createContext();
 
 const ProductsResouces = ({ children }) => {
   const [products, setProducts] = useState([]);

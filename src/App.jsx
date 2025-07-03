@@ -1,6 +1,6 @@
 import { Outlet, Route, Routes } from "react-router-dom";
 
-import ProductsResouces from "./context/products_resouces";
+import ProductsResouces from "./context/products_provider";
 import PrivateRute from "./components/private_route";
 
 import LoadingOverlay from "./components/loading_overlay";
