@@ -5,7 +5,7 @@ import { filterProducts } from "../tools/filter_products";
 import { paginateProducts } from "../tools/paginate_products";
 
 let cont = 999;
-let cache;
+let cache = { url: null, data: [] };
 
 const productsServices = {
   async getAllBy(category) {
@@ -28,17 +28,23 @@ const productsServices = {
       ["new-arrivals", "/category/jewelery"]
     ]);
 
-    if (!cache) {
-      cache = await controlledFetch(
-      /* url    */ `${url_base}${categoryUrl.get(category)}`,
+    const requestUrl = `${url_base}${categoryUrl.get(category)}`;
+
+    if (cache.url !== requestUrl) {
+      console.log(cache);
+
+      cache.url = requestUrl;
+      cache.data = await controlledFetch(
+      /* url    */ requestUrl,
       /* method */ { method: 'GET' }
       );
     }
 
-    const filteredProduct = filterProducts(cache, query);
-    const paginatedProducts = paginateProducts(filteredProduct, page, limit);
 
-    return paginatedProducts;
+    const filtered = filterProducts(cache.data, query);
+    const paginated = paginateProducts(filtered, page, limit);
+
+    return paginated;
   },
 
   async getById(id) {
