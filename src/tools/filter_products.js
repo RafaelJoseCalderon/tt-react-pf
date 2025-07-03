@@ -6,19 +6,11 @@
  * @param {string} [searchBy='all'] - Optional. Specifies which field to search: 'title', 'description', or 'all' (default).
  * @returns {Array<Object>} A new array containing the filtered products.
  */
-export const filterProducts = (products, searchTerm, searchBy = 'all') => {
+export const filterProducts = (products, searchTerm) => {
   const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
   return products.filter(product => {
     const title = product.title ? product.title.toLowerCase() : '';
-    const description = product.description ? product.description.toLowerCase() : '';
-
-    if (searchBy === 'title') {
-      return title.includes(lowerCaseSearchTerm);
-    } else if (searchBy === 'description') {
-      return description.includes(lowerCaseSearchTerm);
-    } else { // searchBy === 'all' or any other value
-      return title.includes(lowerCaseSearchTerm) || description.includes(lowerCaseSearchTerm);
-    }
+    return title.includes(lowerCaseSearchTerm);
   });
 };

@@ -25,35 +25,53 @@ import { useSearchParams } from "react-router-dom";
 //   return debouncedFn;
 // };
 
-export const usePaginatedSearch = (defaultPage, defaultLimit) => {
+export const usePaginatedSearch = (defaultLimit) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const query = searchParams.get('query') || '';
-  const page = parseInt(searchParams.get('page')) || defaultPage;
-  const limit = parseInt(searchParams.get('limit')) || defaultLimit;
+  const query = searchParams.get("query") || "";
+  const page = parseInt(searchParams.get("page")) || 1;
+  const limit = parseInt(searchParams.get("limit")) || defaultLimit;
 
   const [totalPages, setTotalPages] = useState(null);
 
-  const updateParams = (params) => {
-    const updated = { query, page, limit, ...params };
-
-    Object.keys(updated).forEach(
-      (key) => updated[key] == null && delete updated[key]
-    );
-
-    setSearchParams(updated, { replace: true });
-  };
-
   const search = (value) => {
-    updateParams({ query: value, page: 1 });
+    const update = {};
+
+    if (value && value !== "") {
+      update.query = value;
+    }
+
+    setSearchParams(update, { replace: true });
   };
 
   const goToPage = (value) => {
-    updateParams({ page: value });
+    const update = {};
+
+    if (query && query !== "") {
+      update.query = query;
+    }
+
+    if (value && limit && !(value === 1 && limit === defaultLimit)) {
+      update.page = value;
+      update.limit = limit;
+    }
+
+    setSearchParams(update, { replace: true });
   };
 
   const changeLimit = (value) => {
-    updateParams({ limit: value, page: 1 });
+    const update = {};
+
+    if (query && query !== "") {
+      update.query = query;
+    }
+
+    if (value && value !== defaultLimit) {
+      update.page = 1;
+      update.limit = value;
+    }
+
+    setSearchParams(update, { replace: true });
   };
 
   return {

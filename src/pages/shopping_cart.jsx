@@ -5,17 +5,23 @@ import { Container, Row, Col } from "react-bootstrap";
 import NotItems from "../components/not_items";
 import CartList from "../components/cart_list";
 import SummaryCart from "../components/cart_summary";
+import SearchBar from "../components/search_bar";
 
 const ShopingCart = () => {
-  const { items, delItem, delAll } = useCart();
+  const { items, delItem, delAll, filtered, } = useCart();
 
   return (
     <Container className="my-5">
       <h2 className="mb-4">Carrito de Compras</h2>
+
+      <SearchBar query={filtered.query} onChange={filtered.search} />
+
+      <br />
+
       <Row>
         <Col md={8} className="cart-container">
-          {(!items || items?.length === 0) ? <NotItems /> :
-            <CartList items={items} remove={delItem} />
+          {(!filtered.items || items?.length === 0) ? <NotItems /> :
+            <CartList items={filtered.items} remove={delItem} />
           }
         </Col>
         <Col md={4}>

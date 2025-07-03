@@ -15,7 +15,7 @@ import { productsServices } from "../services/products";
 
 const Products = ({ title, category }) => {
   const { addItem } = useCart();
-  const { query, pagination, actions, init } = usePaginatedSearch(1, 5);
+  const { query, pagination, actions, init } = usePaginatedSearch(5);
 
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(true);
