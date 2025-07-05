@@ -2,7 +2,7 @@ import { Form, InputGroup, Spinner } from "react-bootstrap";
 
 const SearchBar = ({ query, loaded, onChange }) => {
   return (
-    <Form role='search' className="search-bar mt-3">
+    <Form role='search' className="search-bar my-2">
       <InputGroup>
         <InputGroup.Text>
           {loaded

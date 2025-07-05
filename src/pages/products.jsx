@@ -24,7 +24,6 @@ const Products = ({ title, category }) => {
   const { page, limit, totalPages } = pagination;
 
   useEffect(() => {
-    const controller = new AbortController();
     if (!loaded) setLoaded(true);
 
     (async () => {
@@ -44,8 +43,6 @@ const Products = ({ title, category }) => {
         setLoaded(false);
       }
     })();
-
-    return () => { controller.abort(); };
   }, [category, query, page, limit]);
 
   if (error) return <ErrorsPromp errors={[error]} />;

@@ -364,16 +364,21 @@ input[type="number"] {
 
 /* #region overlay-spinner*/
 .overlay-spinner {
-    min-height: 65vh;
+    min-height: 45vh;
     /* background-color: #e9ecef; */
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 
     margin: 0;
     padding: 0;
+}
+
+.overlay-spinner .loaded {
+    min-height: 65vh;
+    justify-content: center;
 }
 
 /* #endregion */

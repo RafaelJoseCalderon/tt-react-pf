@@ -16,9 +16,7 @@ const ShopingCart = () => {
 
       <SearchBar query={filtered.query} onChange={filtered.search} />
 
-      <br />
-
-      <Row>
+      <Row className="mt-2">
         <Col md={8} className="cart-container">
           {(!filtered.items || items?.length === 0) ? <NotItems /> :
             <CartList items={filtered.items} remove={delItem} />

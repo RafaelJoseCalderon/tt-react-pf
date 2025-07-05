@@ -4,29 +4,36 @@ import { useProductsActions } from "../hooks/use_products_actions";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
-import Loading from "../components/loading";
-import ErrorPromp from "../components/error_promp";
+import ErrorsPromp from "../components/error_promp";
+import SearchBar from "../components/search_bar";
+import OverlaySpinner from "../components/overlay_spinner";
 import ProductListAdmin from "../components/product_list_admin";
+import Paginator from "../components/paginator";
 
 const ProductsAdmin = () => {
-  const { products, loaded, error } = useProductsResources();
+  const { products, loaded, errors, paginatior } = useProductsResources();
+  const { query, pagination, actions } = paginatior;
   const { remove } = useProductsActions();
 
-  if (loaded) return <Loading />;
-  if (error?.some(e => e !== null)) return <ErrorPromp errors={error} />;
+  if (errors?.some(e => e !== null)) return <ErrorsPromp errors={errors} />;
 
   return (
     <Container className="my-5">
       <h2>Panel de Administración</h2>
+
+      <SearchBar query={query} loaded={loaded} onChange={actions.search} />
 
       <Row><Col className="d-flex justify-content-end mb-2">
         <Link className="btn btn-primary" to="/admin/create">Nuevo</Link>
       </Col></Row>
 
       <Row><Col>
-        <ProductListAdmin items={products} remove={(id) => { remove(id); }} />
+        <OverlaySpinner loaded={loaded}>
+          <ProductListAdmin items={products} remove={(id) => { remove(id); }} />
+        </OverlaySpinner>
       </Col></Row>
 
+      {!loaded && <Paginator {...pagination} {...actions} />}
     </Container>
   );
 };
