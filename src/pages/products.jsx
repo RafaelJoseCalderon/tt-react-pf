@@ -24,7 +24,8 @@ const Products = ({ title, category }) => {
   const { page, limit, totalPages } = pagination;
 
   useEffect(() => {
-    if (!loaded) setLoaded(true);
+    setLoaded(true);
+    setError(null);
 
     (async () => {
       try {
