@@ -4,9 +4,9 @@ import { useAuth } from "../hooks/use_auth";
 
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import Notification from "./notification";
+import { ToastContainer } from "react-toastify";
 
-const Header = ({ children }) => {
+const Header = () => {
   const { items } = useCart();
   const { logout, isAuth, isAdmin } = useAuth();
 
@@ -89,7 +89,7 @@ const Header = ({ children }) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Notification />
+      <ToastContainer style={{ marginLeft: "auto", position: "relative" }} />
     </header>
     <div className="under-heading"></div>
   </>

@@ -1,10 +1,9 @@
 import { useForm } from "../hooks/use_form";
-import { useNotification } from "../hooks/use_notification";
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Contact = () => {
-  const { showNotification } = useNotification();
   const form = useForm({
     initialValues: {
       name: "",
@@ -41,10 +40,7 @@ const Contact = () => {
       `);
 
       form.reset();
-      showNotification({
-        type: "success",
-        message: "¡Mensaje enviado con éxito!"
-      });
+      toast.success("¡Mensaje enviado con éxito!");
     }
   };
 

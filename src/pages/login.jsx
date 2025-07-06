@@ -1,12 +1,10 @@
+import { toast } from "react-toastify";
 import { useAuth } from "../hooks/use_auth";
 import { useForm } from "../hooks/use_form";
-import { useNotification } from "../hooks/use_notification";
 
 import { Container, Form, Button, Card } from "react-bootstrap";
 
 const Login = () => {
-  const { showNotification } = useNotification();
-
   const { login } = useAuth();
   const form = useForm({
     initialValues: {
@@ -35,7 +33,7 @@ const Login = () => {
         await login(form.values.name, form.values.password);
         form.reset();
       } catch (error) {
-        showNotification({ type: "danger", message: error.message });
+        toast.error(error.message);
       }
     }
   };

@@ -1,8 +1,10 @@
 import { useContext, useMemo } from "react";
 import { CartContext } from "../context/cart_context";
 
-import { usePaginatedSearch } from "./use_paginated_search";
+import { toast } from "react-toastify"; // <-- importá toast
 import { filterProducts } from "../tools/filter_products";
+
+import { usePaginatedSearch } from "./use_paginated_search";
 
 export const useCart = () => {
   const { items, setItems } = useContext(CartContext);
@@ -11,9 +13,11 @@ export const useCart = () => {
   const addItem = (product) => {
     setItems((prev) => {
       if (prev.some((item) => item.id === product.id)) {
+        toast.info("Este producto ya está en el carrito");
         return prev;
       } else {
         const cents = Math.round(product.price * 100);
+        toast.success(`${product.title} agregado al carrito`);
         return [...prev, { ...product, price: cents, quantity: 1 }];
       }
     });

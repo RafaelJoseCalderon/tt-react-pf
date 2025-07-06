@@ -1,13 +1,13 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { ProductsContext } from "../context/products_context";
+import { toast } from "react-toastify";
 
 import { productsServices } from "../services/products";
-import { useNotification } from "./use_notification";
-import { useNavigate } from "react-router-dom";
 
 export const useProductsActions = () => {
   const { products, loadProduct, setLoaded, setErrors } = useContext(ProductsContext);
-  const { showNotification } = useNotification();
   const navigate = useNavigate();
 
   const getById = (id) => {
@@ -16,10 +16,9 @@ export const useProductsActions = () => {
 
   const notifyOrError = (error, name) => {
     if (error?.type === "ApiError") {
-      showNotification({
-        type: "danger",
-        message: `Error en la operación. Código: ${error.status}`
-      });
+      toast.toast(
+        `Error en la operación. Código: ${error.status}`
+      );
     } else {
       setErrors(prev => ({ ...prev, [name]: error }));
     }
@@ -43,7 +42,7 @@ export const useProductsActions = () => {
     await run({ cb: async () => productsServices.create(product), as: "create" });
     await run({ cb: async () => await loadProduct(), as: "products" });
 
-    showNotification({ type: "success", message: "se a creado correctamente" });
+    toast.success("se a creado correctamente");
     navigate("/admin");
   };
 
@@ -51,7 +50,7 @@ export const useProductsActions = () => {
     await run({ cb: async () => productsServices.update(product), as: "update" });
     await run({ cb: async () => await loadProduct(), as: "products" });
 
-    showNotification({ type: "success", message: "se a actualizado correctamente" });
+    toast.success("se a actualizado correctamente");
     navigate("/admin");
   };
 
@@ -59,7 +58,7 @@ export const useProductsActions = () => {
     await run({ cb: async () => productsServices.remove(id), as: "remove" });
     await run({ cb: async () => await loadProduct(), as: "products" });
 
-    showNotification({ type: "success", message: "se a eliminado correctamente" });
+    toast.success("se a eliminado correctamente");
   };
 
   return { getById, create, update, remove };

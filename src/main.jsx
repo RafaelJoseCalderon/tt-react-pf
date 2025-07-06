@@ -8,7 +8,6 @@ import "./index.css";
 
 import CartProvider from "./context/cart_provider";
 import AuthProvider from "./context/auth_provider";
-import NotifProvider from "./context/notification_provider";
 import ScrollToTop from "./components/scroll_to_top";
 
 import App from "./App";
@@ -19,9 +18,7 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
         <CartProvider>
-          <NotifProvider>
-            <App />
-          </NotifProvider>
+          <App />
         </CartProvider>
       </BrowserRouter>
     </AuthProvider>
