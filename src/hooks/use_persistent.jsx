@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 
 export const usePersistentState = (key, defaultValue) => {
-  const [state, setState] = useState(
-    JSON.parse(localStorage.getItem(key)) ?? defaultValue
-  );
+  const [state, setState] = useState(() => {
+    try {
+      const storedValue = localStorage.getItem(key);
+      return storedValue ? JSON.parse(storedValue) : defaultValue;
+    } catch (error) {
+      console.error("Error reading from localStorage:", error);
+      return defaultValue;
+    }
+  });
 
   useEffect(() => {
     const isNonEmptyArray = Array.isArray(state) && state.length > 0;
@@ -14,7 +20,6 @@ export const usePersistentState = (key, defaultValue) => {
     } else {
       localStorage.removeItem(key);
     }
-
   }, [state, key]);
 
   return [state, setState];
