@@ -59,6 +59,7 @@ export const useProductsActions = () => {
     await run({ cb: async () => await loadProduct(), as: "products" });
 
     toast.success("se a eliminado correctamente");
+    navigate("/admin");
   };
 
   return { getById, create, update, remove };
