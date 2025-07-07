@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../hooks/use_cart";
+import { useAddToCart } from "../hooks/use_add_to_cart";
 
 import { Container, Row, Col, Button, Badge } from "react-bootstrap";
 
@@ -12,7 +12,7 @@ import { productsServices } from "../services/products";
 
 const Product = () => {
   const { id } = useParams();
-  const { addItem } = useCart();
+  const { addItem } = useAddToCart();
 
   const [product, setProduct] = useState();
   const [loaded, setLoaded] = useState(true);

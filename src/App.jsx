@@ -43,7 +43,7 @@ function App() {
         {/* Protected routes */}
         <Route path="admin" element={
           <ProductsResouces>
-            <PrivateRute><Outlet /></PrivateRute>
+            <PrivateRute role="admin"><Outlet /></PrivateRute>
           </ProductsResouces>
         }>
           <Route index element={
@@ -59,9 +59,14 @@ function App() {
             <ProductAdmin mode="create" title="Crear" />}
           />
         </Route>
+
+        <Route path="cart" element={
+          <PrivateRute role="user">
+            <ShopingCart />
+          </PrivateRute>
+        } />
         {/* End protected routes */}
 
-        <Route path="cart" element={<ShopingCart />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />

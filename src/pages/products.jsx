@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useCart } from "../hooks/use_cart";
+import { useAddToCart } from "../hooks/use_add_to_cart";
 import { usePaginatedSearch } from "../hooks/use_paginated_search";
 
 import { Container } from "react-bootstrap";
@@ -14,7 +14,7 @@ import Paginator from "../components/paginator";
 import { productsServices } from "../services/products";
 
 const Products = ({ title, category }) => {
-  const { addItem } = useCart();
+  const { addItem } = useAddToCart();
   const { query, pagination, actions, init } = usePaginatedSearch(5);
 
   const [products, setProducts] = useState([]);

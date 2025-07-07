@@ -5,7 +5,13 @@ const loginServices = (username, password) => {
         resolve({
           username: username,
           role: "admin",
-          token: `fake-token-${username}`
+          token: `fake-token-admin`
+        });
+      } else if (username === "user" && password === "123") {
+        resolve({
+          username: username,
+          role: "user",
+          token: `fake-token-user`
         });
       } else {
         reject(new Error("usuario no encontrado."));
@@ -18,6 +24,8 @@ const logoutServices = (token) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (token === "fake-token-admin") {
+        resolve({});
+      } else if (token === "fake-token-user") {
         resolve({});
       } else {
         reject(new Error("usuario no encontrado."));
