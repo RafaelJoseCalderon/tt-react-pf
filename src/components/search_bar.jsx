@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, InputGroup, Spinner } from "react-bootstrap";
 import { useDebounced } from "../hooks/use_debounced";
 
@@ -22,13 +22,15 @@ const InputGroupText = styled(InputGroup.Text)`
 `;
 
 const SearchBar = ({ query, loaded, onChange }) => {
-  const [value, setValue] = useState(query ?? "");
+  const [value, setValue] = useState("");
   const debounced = useDebounced();
 
   const onChangeValue = ({ target: { value } }) => {
     setValue(value);
     debounced(onChange, value);
   };
+
+  useEffect(() => { setValue(query ?? ""); }, [query]);
 
   return (
     <Form role='search' className="my-2">

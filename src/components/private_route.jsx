@@ -12,7 +12,7 @@ const PrivateRute = ({ role, children }) => {
     return (<Navigate to="/login" />);
   }
 
-  if (hasRole !== role) {
+  if (isAuth && hasRole !== role) {
     return (<Navigate to="/unauthorized" />);
   }
 
