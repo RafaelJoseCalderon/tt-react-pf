@@ -36,8 +36,11 @@ export const useAuth = () => {
 
     try {
       const data = await logoutServices(user.token);
+      // TODO: error de sincronismo,
+      // la navegacion llega despues del cerrar sesion,
+      // lo que ocaciona que las rutas protegidas me envien a login
+      navigate("/", { replace: true });
       setUser(data);
-      navigate("/login");
     } catch (error) {
       alert("no fue posible cerrar cession, intentelo nuevamente");
     } finally {
