@@ -1,6 +1,8 @@
 import { Card, Button } from "react-bootstrap";
 import SafeImage from "./safe_image";
 
+import { BsTrash } from "react-icons/bs";
+
 const CartList = ({ items, remove }) => {
   return (<>
     {items.map(item =>
@@ -13,7 +15,7 @@ const CartList = ({ items, remove }) => {
         </Card.Body>
 
         <Button variant="danger" onClick={() => remove(item.id)}>
-          <i className="bi bi-trash"></i>
+          <BsTrash />
         </Button>
       </Card>
     )}

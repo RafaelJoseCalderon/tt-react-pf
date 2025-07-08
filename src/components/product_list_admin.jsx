@@ -2,6 +2,7 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import NotItems from "./not_items";
+import { BsInfoCircle, BsPencil, BsTrash } from "react-icons/bs";
 
 const ProductListAdmin = ({ items, remove }) => {
   return (<>
@@ -21,15 +22,15 @@ const ProductListAdmin = ({ items, remove }) => {
 
           <div className="buttons">
             <Link className="btn btn-info m-0 p-0" to={`/admin/details/${item.id}`}>
-              <i className="bi bi-info-circle"></i>
+              <BsInfoCircle />
             </Link>
 
             <Link className="btn btn-success m-0 p-0" to={`/admin/edit/${item.id}`}>
-              <i className="bi bi-pencil"></i>
+              <BsPencil />
             </Link>
 
             <Button variant="danger" onClick={() => remove(item.id)}>
-              <i className="bi bi-trash"></i>
+              <BsTrash />
             </Button>
           </div>
         </Card>

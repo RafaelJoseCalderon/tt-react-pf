@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Form, InputGroup, Spinner } from "react-bootstrap";
 import { useDebounced } from "../hooks/use_debounced";
 
+import { BsSearch } from "react-icons/bs";
 import styled from "styled-components";
 
 const InputGroupText = styled(InputGroup.Text)`
@@ -35,7 +36,7 @@ const SearchBar = ({ query, loaded, onChange }) => {
         <InputGroupText>
           {loaded
             ? <Spinner as="span" animation="border" />
-            : <i className="bi bi-search"></i>
+            : <div><BsSearch /></div>
           }
         </InputGroupText>
         <Form.Control

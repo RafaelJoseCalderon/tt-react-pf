@@ -35,17 +35,6 @@ main {
     position: relative;
 }
 
-.icon {
-    border: 2px solid #8d9092;
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-weight: bold;
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -142,16 +131,19 @@ nav .badge {
 .admin-card a,
 .admin-card button,
 .cart button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    margin: 0.75rem;
-}
-
-.admin-card a,
-.admin-card button {
     margin: 0;
     padding: 0;
+}
+
+.cart button {
+    margin: 0.75rem;
 }
 
 .admin-card a {
