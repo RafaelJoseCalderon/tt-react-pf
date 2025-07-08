@@ -6,6 +6,31 @@ import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import styled from "styled-components";
+
+// ICONOS
+import {
+  BsCart, BsBasket, BsTag, BsStars, BsPeople,
+  BsEnvelope, BsPerson, BsBoxArrowRight, BsPersonGear
+} from "react-icons/bs";
+
+const Icon = styled.div`
+  position: relative !important;
+
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  color: var(--bd-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 2px solid #8d9092;
+  font-size: 1.25rem;
+`;
+
 const Header = () => {
   const { items } = useCart();
   const { logout, isAuth, isAdmin } = useAuth();
@@ -20,14 +45,15 @@ const Header = () => {
       <Navbar expanded={expanded} expand="lg" className="py-3 shadow">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <img className="logo" src="/logo_black.svg" alt="" />
+            <img className="logo" src="/logo_black.svg" alt="TP" />
           </Navbar.Brand>
 
           {!isAdmin &&
-            <Nav.Link as={Link} to="/cart" className="shoping-cart">
-              <i className="icon bi bi-cart2">
-                <Badge className="badge-cart">{items.length}</Badge>
-              </i>
+            <Nav.Link as={Link} to="/cart" className="button-cart">
+              <Icon>
+                <BsCart />
+                <Badge>{items.length}</Badge>
+              </Icon>
             </Nav.Link>
           }
 
@@ -37,29 +63,29 @@ const Header = () => {
 
             <Nav className="me-auto">
               <Nav.Link as={NavLink} to="/">
-                <i className="d-lg-none icon bi bi-basket"></i>
+                <Icon className="d-lg-none"><BsBasket /></Icon>
                 <span className="mx-2">Productos</span>
               </Nav.Link>
 
               <Nav.Link as={NavLink} to="/offers">
-                <i className="d-lg-none icon bi bi-tag"></i>
+                <Icon className="d-lg-none"><BsTag /></Icon>
                 <span className="mx-2">Ofertas</span>
               </Nav.Link>
 
               <Nav.Link as={NavLink} to="/new-arrivals">
-                <i className="d-lg-none icon bi bi-stars"></i>
+                <Icon className="d-lg-none"><BsStars /></Icon>
                 <span className="mx-2">Novedades</span>
               </Nav.Link>
 
               {!isAdmin &&
                 <>
                   <Nav.Link as={NavLink} to="/about">
-                    <i className="d-lg-none icon bi bi-people"></i>
+                    <Icon className="d-lg-none"><BsPeople /></Icon>
                     <span className="mx-2">Sobre nosotros</span>
                   </Nav.Link>
 
                   <Nav.Link as={NavLink} to="/contact">
-                    <i className="d-lg-none icon bi bi-envelope"></i>
+                    <Icon className="d-lg-none"><BsEnvelope /></Icon>
                     <span className="mx-2">Contacto</span>
                   </Nav.Link>
                 </>
@@ -67,21 +93,21 @@ const Header = () => {
 
               {isAdmin &&
                 <Nav.Link as={NavLink} to="/admin">
-                  <i className="d-lg-none icon bi bi-person-gear"></i>
+                  <Icon className="d-lg-none"><BsPersonGear /></Icon>
                   <span className="mx-2">Admin</span>
                 </Nav.Link>
               }
             </Nav>
 
-            <Nav>
+            <Nav className="me-1">
               {isAuth ?
-                <Nav.Link onClick={logout}>
-                  <i className="icon bi bi-box-arrow-right"></i>
+                <Nav.Link onClick={logout} className="button-user">
+                  <Icon><BsBoxArrowRight /></Icon>
                 </Nav.Link>
                 :
-                <Nav.Link as={Link} to="/login" className="user-buttom">
-                  <i className="icon bi bi-person"></i>
-                  <span className="d-lg-none mx-2">Iniciar sesión</span>
+                <Nav.Link as={Link} to="/login" className="button-user">
+                  <Icon><BsPerson /></Icon>
+                  <span className="mx-2 d-lg-none">Iniciar sesión</span>
                 </Nav.Link>
               }
             </Nav>
@@ -91,7 +117,7 @@ const Header = () => {
       </Navbar>
       <ToastContainer style={{ marginLeft: "auto", position: "relative" }} />
     </header>
-    <div className="under-heading"></div>
+    <div style={{ height: "var(--navbar-space)" }}></div>
   </>
   );
 };

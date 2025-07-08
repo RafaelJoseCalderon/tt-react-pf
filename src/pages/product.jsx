@@ -9,6 +9,14 @@ import OverlaySpinner from "../components/overlay_spinner";
 import SafeImage from "../components/safe_image";
 
 import { productsServices } from "../services/products";
+import styled from "styled-components";
+
+const Img = styled(SafeImage)`
+  max-height: 31.25rem;
+  object-fit: contain;
+  padding: 1.5rem;
+  width: 100%;
+`;
 
 const Product = () => {
   const { id } = useParams();
@@ -41,7 +49,7 @@ const Product = () => {
         {product &&
           <Row>
             <Col md={4} className="text-center">
-              <SafeImage image={product?.image} className="product-image" />
+              <Img image={product?.image} />
             </Col>
 
             <Col md={8}>

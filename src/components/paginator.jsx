@@ -1,5 +1,24 @@
 import { useState, useEffect } from "react";
 import { Button, Form, InputGroup, Stack } from "react-bootstrap";
+import styled from "styled-components";
+
+const PaginatorStack = styled(Stack)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 1rem 0;
+  padding: 0;
+
+  .region {
+    width: 9.25rem;
+  }
+
+  .region button {
+    background-color: #f8f9fa;
+    border-color: #eaedf0;
+  }
+`;
 
 const GoTo = ({ page, totalPages, goToPage }) => {
   const [goTo, setGoTo] = useState(String(page));
@@ -49,7 +68,7 @@ const Paginator = ({ page, limit, totalPages, goToPage, changeLimit }) => {
   if (!page || !totalPages || totalPages < 1) return <></>;
 
   return (
-    <Stack className="paginator flex-column flex-sm-row" gap={3}>
+    <PaginatorStack className="flex-column flex-sm-row" gap={3}>
 
       <InputGroup className="region">
         <InputGroup.Text>Limite</InputGroup.Text>
@@ -68,7 +87,7 @@ const Paginator = ({ page, limit, totalPages, goToPage, changeLimit }) => {
       </InputGroup>
 
       <GoTo page={page} totalPages={totalPages} goToPage={goToPage} />
-    </Stack>
+    </PaginatorStack>
   );
 };
 

@@ -4,6 +4,48 @@ import { useForm } from "../hooks/use_form";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { toast } from "react-toastify";
 
+import { BsPerson } from 'react-icons/bs';
+import styled from "styled-components";
+
+const LoginContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64vh;
+
+  .card {
+    margin: auto;
+    padding: 1rem;
+    width: 25rem;
+  }
+
+  @media (max-width:575px) {
+    .card {
+      width: 100%;
+    }
+
+    .card {
+      border: none;
+    }
+  }
+`;
+
+const Icon = styled.div`
+  width: 5rem;
+  height: 5rem;
+  margin: 0.75rem auto;
+  font-size: 2.5rem;
+
+  background-color: var(--bd-background-color);
+  color: var(--bd-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid #8d9092;
+`;
+
 const Login = () => {
   const { login } = useAuth();
   const form = useForm({
@@ -39,9 +81,10 @@ const Login = () => {
   };
 
   return (
-    <Container className="login">
+    <LoginContainer className="login">
       <Card>
-        <i className="icon bi bi-person"></i>
+        <Icon><BsPerson /></Icon>
+
         <h2 className="mb-4 text-center">Iniciar sesión</h2>
 
         <Form onSubmit={handleSubmit}>
@@ -80,7 +123,7 @@ const Login = () => {
           </div>
         </Form>
       </Card>
-    </Container>
+    </LoginContainer>
   );
 };
 

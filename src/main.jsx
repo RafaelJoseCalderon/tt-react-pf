@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/bootstrap-icons.min.css";
 import "./index.css";
 
 import CartProvider from "./context/cart_provider";
