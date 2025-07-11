@@ -30,171 +30,97 @@ main {
     flex: 1;
 }
 
-.icon {
-    border: 2px solid #8d9092;
+main {
+    /* solo valido para cuando esta presente LoadingOverlay*/
+    position: relative;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* #endregion */
+
+/* #region main */
+/* por razones de que me pierdo cuando hay mucho codigo en el componente*/
+nav {
+    background-color: var(--bd-background-color);
+}
+
+nav .logo {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+nav .nav-link {
+    display: flex;
+    align-items: center;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+}
+
+nav .nav-link:hover {
+    background-color: var(--bd-hover-color);
+    color: #000;
+}
+
+nav .nav-link.button-cart {
     border-radius: 50%;
+    margin: 0 1rem 0 auto;
+    padding: 0;
+}
+
+@media (min-width:992px) {
+    nav .nav-link.button-cart {
+        order: 9999;
+    }
+
+    nav .nav-link.button-user {
+        border-radius: 50%;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+nav .badge {
+    position: absolute;
+    top: 55%;
+    left: 55%;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-weight: bold;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: 0;
+    padding: 0;
+
+    font-size: .6rem;
+    border-radius: 50%;
 }
 
 /* #endregion */
 
-/* #region not found */
-.spinner-border {
-    height: 5rem;
-    width: 5rem;
-}
-
-/* #endregion */
-
-/* #region product */
-.card img {
-    height: 12.5rem;
-    padding: 1.5rem;
-    object-fit: contain;
-}
-
-.box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 1.5rem;
-
-    margin-top: 3rem;
-    margin-bottom: 6rem;
-}
-
-.box {
-    box-shadow: 0 .25rem .25rem rgba(0, 0, 0, .075);
-
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    transition: transform 0.2s;
-    transition-timing-function: linear;
-}
-
-/* .box:hover {
-    -webkit-transform: scale(1.025);
-    -ms-transform: scale(1.025);
-    transform: scale(1.025);
-} */
-
-.product-image {
-    max-height: 31.25rem;
-    object-fit: contain;
-    padding: 1.5rem;
-    width: 100%;
-}
-
-/* #endregion */
-
-/* #region header */
-.logo {
-    width: 3.5rem;
-    height: 3.5rem;
-}
-
-.navbar {
-    background-color: var(--bd-background-color);
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-}
-
-.nav-link:hover {
-    border-radius: 0.375rem !important;
-    background-color: var(--bd-hover-color);
-    color: #000;
-}
-
-.nav-link .icon {
-    position: relative !important;
-
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: 0.25rem;
-
-    font-size: 1.25rem;
-}
-
-.nav-link:hover {
-    border-radius: 0.375rem !important;
-    background-color: var(--bd-hover-color);
-    color: #000;
-}
-
-.nav-link.shoping-cart:hover,
-.nav-link.user-buttom:hover {
-    background-color: inherit;
-    color: inherit;
-    border-radius: inherit;
-}
-
-.shoping-cart {
-    margin-left: auto;
-    margin-right: .5rem;
-}
-
-@media (min-width:992px) {
-    .shoping-cart {
-        order: 9999;
-    }
-}
-
-.badge-cart {
-    position: absolute;
-
-    bottom: 0;
-    left: 100%;
-    transform: translate(-75%, 25%);
-
-    display: inline-block;
-    padding: 0.35rem 0.65rem;
-
-    font-size: .7rem;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 9999px;
-    background-color: #dc3545;
-}
-
-.under-heading {
-    height: var(--navbar-space);
-}
-
-/* #endregion */
-
-/* #region header */
-footer {
-    background-color: var(--bd-background-color);
-}
-
-footer,
-footer a {
-    color: var(--bd-color);
-}
-
-/* #endregion */
-
-/* #region cart */
+/* #region cart and admin-cart */
+.admin-card,
 .cart {
     display: grid;
-    grid-template-columns: 6.25rem auto 4.70rem;
+    grid-template-columns: 6.25rem 1fr auto;
     align-items: center;
     margin: 0;
     margin-bottom: 0.75rem;
+
+    width: 100%;
 }
 
+.admin-card img,
 .cart img {
     width: 5.25rem;
     height: 5.25rem;
@@ -202,18 +128,42 @@ footer a {
     object-fit: contain;
 }
 
+.admin-card a,
+.admin-card button,
 .cart button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.cart button {
     margin: 0.75rem;
 }
 
+.admin-card a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.admin-card a:hover {
+    color: white;
+}
+
+.admin-card .card-body,
 .cart .card-body {
     overflow: hidden;
     padding: 0.5rem;
 }
 
+.admin-card .card-body .card-text,
 .cart .card-body .card-text {
     overflow: hidden;
     white-space: nowrap;
@@ -222,12 +172,24 @@ footer a {
     margin: 0;
 }
 
-.cart .card-body button {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    margin: 0;
-    font-size: 0.5rem;
+.admin-card .buttons {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    justify-content: flex-end;
+}
+
+@media (max-width: 540px) {
+    .admin-card {
+        grid-template-columns: 6.25rem 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .admin-card .buttons {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
 }
 
 @media (min-width:768px) {
@@ -236,44 +198,6 @@ footer a {
         position: sticky;
         top: calc(var(--navbar-space) + 0.625rem);
         z-index: 1020
-    }
-}
-
-/* #endregion */
-
-/* #region cart */
-.login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 64vh;
-}
-
-.login .icon {
-    width: 5rem;
-    height: 5rem;
-    margin: 0.75rem auto;
-
-    font-size: 2.5rem;
-
-    background-color: var(--bd-background-color);
-    color: var(--bd-color);
-}
-
-.login .card {
-    margin: auto;
-    padding: 1rem;
-    width: 25rem;
-}
-
-@media (max-width:575px) {
-    .login .card {
-        width: 100%;
-    }
-
-    .login .card {
-        border: none;
     }
 }
 
