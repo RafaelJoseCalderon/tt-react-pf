@@ -57,7 +57,7 @@ const ProductsResouces = ({ children }) => {
     <ProductsContext.Provider value={{
       products,
       categories,
-      loaded: loaded["category"] && loaded["products"],
+      loaded: Object.values(loaded).some(v => v === true),
       errors: Object.values(errors),
 
       loadCategory,
