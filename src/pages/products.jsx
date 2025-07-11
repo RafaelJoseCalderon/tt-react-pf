@@ -3,6 +3,7 @@ import { useAddToCart } from "../hooks/use_add_to_cart";
 import { usePaginatedSearch } from "../hooks/use_paginated_search";
 
 import { Container, Row } from "react-bootstrap";
+import { ProductsSEO } from "../pages_ceo";
 
 import ErrorsPromp from "../components/error_promp";
 import SearchBar from "../components/search_bar";
@@ -49,24 +50,27 @@ const Products = ({ title, category }) => {
   if (error) return <ErrorsPromp errors={[error]} />;
 
   return (
-    <Container className="my-4">
-      <h1>{title}</h1>
+    <>
+      <ProductsSEO category={category} />
+      <Container className="my-4">
+        <h1>{title}</h1>
 
-      <SearchBar query={query} loaded={loaded} onChange={actions.search} />
+        <SearchBar query={query} loaded={loaded} onChange={actions.search} />
 
-      <OverlaySpinner loaded={loaded}>
-        {(!products || products?.length === 0) ? <NotItems /> :
-          <Row className="w-100 g-3 mt-2">
-            {products.map(product => (
-              <ProductCard key={product.id} product={product} addItem={addItem} />
-            ))}
-          </Row>
-        }
-      </OverlaySpinner>
+        <OverlaySpinner loaded={loaded}>
+          {(!products || products?.length === 0) ? <NotItems /> :
+            <Row className="w-100 g-3 mt-2">
+              {products.map(product => (
+                <ProductCard key={product.id} product={product} addItem={addItem} />
+              ))}
+            </Row>
+          }
+        </OverlaySpinner>
 
-      {!loaded && <Paginator {...pagination} {...actions} />}
+        {!loaded && <Paginator {...pagination} {...actions} />}
 
-    </Container>
+      </Container>
+    </>
   );
 };
 

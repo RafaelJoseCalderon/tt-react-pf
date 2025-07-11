@@ -2,6 +2,7 @@ import { useAuth } from "../hooks/use_auth";
 import { useForm } from "../hooks/use_form";
 
 import { Container, Form, Button, Card } from "react-bootstrap";
+import { LoginSEO } from "../pages_ceo";
 import { toast } from "react-toastify";
 
 import { BsPerson } from 'react-icons/bs';
@@ -81,49 +82,52 @@ const Login = () => {
   };
 
   return (
-    <LoginContainer className="login">
-      <Card>
-        <Icon><BsPerson /></Icon>
+    <>
+      <LoginSEO />
+      <LoginContainer className="login">
+        <Card>
+          <Icon><BsPerson /></Icon>
 
-        <h2 className="mb-4 text-center">Iniciar sesión</h2>
+          <h2 className="mb-4 text-center">Iniciar sesión</h2>
 
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formName" className="mb-3">
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control
-              type="text"
-              name="name"
-              value={form.values?.name}
-              isInvalid={form.errors?.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <Form.Control.Feedback type="invalid">
-              Su nombre es obligatorio
-            </Form.Control.Feedback>
-          </Form.Group>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formName" className="mb-3">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={form.values?.name}
+                isInvalid={form.errors?.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Form.Control.Feedback type="invalid">
+                Su nombre es obligatorio
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Form.Group controlId="formEmail" className="mb-3">
-            <Form.Label>Contraseña</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={form.values?.password}
-              isInvalid={form.errors?.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <Form.Control.Feedback type="invalid">
-              La contraseña es obligatorio
-            </Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group controlId="formEmail" className="mb-3">
+              <Form.Label>Contraseña</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={form.values?.password}
+                isInvalid={form.errors?.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Form.Control.Feedback type="invalid">
+                La contraseña es obligatorio
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <div className="text-center">
-            <Button variant="primary" type="submit">Entrar</Button>
-          </div>
-        </Form>
-      </Card>
-    </LoginContainer>
+            <div className="text-center">
+              <Button variant="primary" type="submit">Entrar</Button>
+            </div>
+          </Form>
+        </Card>
+      </LoginContainer>
+    </>
   );
 };
 

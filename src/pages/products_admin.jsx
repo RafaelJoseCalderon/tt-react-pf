@@ -4,6 +4,7 @@ import { useProductsActions } from "../hooks/use_products_actions";
 
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import { ProductsAdminSEO } from "../pages_ceo";
 
 import ErrorsPromp from "../components/error_promp";
 import SearchBar from "../components/search_bar";
@@ -32,31 +33,34 @@ const ProductsAdmin = () => {
   if (errors?.some((e) => e !== null)) return <ErrorsPromp errors={errors} />;
 
   return (
-    <Container className="my-5">
-      <h2>Panel de Administración</h2>
+    <>
+      <ProductsAdminSEO />
+      <Container className="my-5">
+        <h2>Panel de Administración</h2>
 
-      <SearchBar query={query} loaded={loaded} onChange={actions.search} />
+        <SearchBar query={query} loaded={loaded} onChange={actions.search} />
 
-      <Row>
-        <Col className="d-flex justify-content-end mb-2">
-          <Link className="btn btn-primary" to="/admin/create">
-            Nuevo
-          </Link>
-        </Col>
-      </Row>
+        <Row>
+          <Col className="d-flex justify-content-end mb-2">
+            <Link className="btn btn-primary" to="/admin/create">
+              Nuevo
+            </Link>
+          </Col>
+        </Row>
 
-      <Row>
-        <Col>
-          <OverlaySpinner loaded={loaded}>
-            <ProductListAdmin items={products} remove={handleOpen} />
-          </OverlaySpinner>
-        </Col>
-      </Row>
+        <Row>
+          <Col>
+            <OverlaySpinner loaded={loaded}>
+              <ProductListAdmin items={products} remove={handleOpen} />
+            </OverlaySpinner>
+          </Col>
+        </Row>
 
-      {!loaded && <Paginator {...pagination} {...actions} />}
+        {!loaded && <Paginator {...pagination} {...actions} />}
 
-      <ModalMessage show={confirm.show} onClose={handleClose} onConfirm={handleConfirm} />
-    </Container>
+        <ModalMessage show={confirm.show} onClose={handleClose} onConfirm={handleConfirm} />
+      </Container>
+    </>
   );
 };
 
