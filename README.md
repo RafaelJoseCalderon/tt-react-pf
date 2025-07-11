@@ -1,5 +1,11 @@
 # Proyecto final - React - Talento Tech
 
+* front: https://talento-tech-calderon-final.netlify.app/
+* back: https://rafaeljosecalderon.alwaysdata.net
+
+* github-front: https://github.com/RafaelJoseCalderon/tt-react-pf
+* github-back: (privado)
+
 ## Alumno
 * Calderón, Rafael José
 
