@@ -11,7 +11,10 @@ const ProductsResouces = ({ children }) => {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [loaded, setLoaded] = useState({});
+  const [loaded, setLoaded] = useState({
+    category: true,
+    products: true
+  });
   const [errors, setErrors] = useState({});
 
   const loadCategory = async () => {
