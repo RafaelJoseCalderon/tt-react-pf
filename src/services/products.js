@@ -1,79 +1,92 @@
 import { url_base } from "./config";
 import { controlledFetch } from "./tools";
 
-import { filterProducts } from "../tools/filter_products";
-import { paginateProducts } from "../tools/paginate_products";
+const setPrice = (item, product) => {
+  if (typeof product?.price === 'string') {
+    product.price = product.price.replace(',', '.').trim();
+  }
 
-let cont = 999;
-let cache = { url: null, data: [] };
+  const num = parseFloat(product?.price);
+  item.price = isNaN(num) ? null : num;
+};
+
+const setImage = (item, product) => {
+  if (product?.image) {
+    item.image = product?.image;
+  }
+};
 
 const productsServices = {
-  async getAllBy(category) {
-    const categoryUrl = new Map([
-      [undefined, ""],
-      ["offers", "/category/men's clothing"],
-      ["new-arrivals", "/category/jewelery"]
-    ]);
-
-    return await controlledFetch(
-      /* url    */ `${url_base}${categoryUrl.get(category)}`,
-      /* method */ { method: 'GET' }
-    );
-  },
-
   async getBy(category, query, page, limit) {
-    const categoryUrl = new Map([
-      [undefined, ""],
-      ["offers", "/category/men's clothing"],
-      ["new-arrivals", "/category/jewelery"]
-    ]);
+    const url = new URL("api/products", url_base);
 
-    const requestUrl = `${url_base}${categoryUrl.get(category)}`;
+    if (category) url.pathname += `/${category}`;
 
-    if (cache.url !== requestUrl) {
-      console.log(cache);
+    if (query) url.searchParams.append("query", query);
+    if (page) url.searchParams.append("page", page);
+    if (limit) url.searchParams.append("limit", limit);
 
-      cache.url = requestUrl;
-      cache.data = await controlledFetch(
-      /* url    */ requestUrl,
-      /* method */ { method: 'GET' }
-      );
-    }
+    const response = await controlledFetch(
+      url.toString(), {
+      method: 'GET'
+    });
 
-
-    const filtered = filterProducts(cache.data, query);
-    const paginated = paginateProducts(filtered, page, limit);
-
-    return paginated;
+    return response;
   },
 
   async getById(id) {
-    return await controlledFetch(
-      /* url    */ `${url_base}/${id}`,
-      /* method */ { method: 'GET' }
-    );
+    const response = await controlledFetch(
+      `${url_base}/api/products/${id}`, {
+      method: 'GET'
+    });
+
+    // parseImage(response);
+    return response;
   },
 
-
   async create(product) {
-    return new Promise((resolve) => {
-      console.log(product);
-      cont = cont + 1;
-      resolve({ ...product, id: cont });
+    const item = {};
+
+    item.title = product?.title || "";
+    item.description = product?.description || "";
+    item.category = product?.category || "";
+    item.rating = { rate: 0.0, count: 0 };
+
+    setPrice(item, product);
+    setImage(item, product);
+
+    return await controlledFetch(
+      `${url_base}/api/products/create`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(item)
     });
   },
 
   async update(product) {
-    return new Promise((resolve) => {
-      console.log(product);
-      resolve({ ...product });
+    const item = {};
+
+    item.id = product?.id;
+    item.title = product?.title;
+    item.description = product?.description;
+    item.category = product?.category;
+    item.rating = { rate: 0.0, count: 0 };
+
+    setPrice(item, product);
+    setImage(item, product);
+
+    return await controlledFetch(
+      `${url_base}/api/products/update/${item.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(item)
     });
   },
 
   async remove(id) {
-    return new Promise((resolve) => {
-      console.log(id);
-      resolve({});
+    return await controlledFetch(
+      `${url_base}/api/products/delete/${id}`, {
+      method: 'DELETE'
     });
   },
 };
