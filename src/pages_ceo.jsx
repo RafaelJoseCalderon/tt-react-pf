@@ -1,4 +1,4 @@
-const url_base = "https://wololo.com";
+const url_base = "https://talento-tech-calderon-final.netlify.app/";
 
 const SEO = ({ title, description, image, url }) => {
   return (
