@@ -53,7 +53,7 @@ const ProductFormAdmin = ({ mode, values, valuesOptions, handleSubmit }) => {
         <Col md={8}>
           <Form onSubmit={onSubmit} noValidate>
             <fieldset disabled={mode === "view"}>
-              <Form.Group controlId="formName" className="mb-3">
+              <Form.Group className="mb-3">
                 <Form.Label>Título</Form.Label>
                 <Form.Control
                   type="text"
@@ -68,7 +68,7 @@ const ProductFormAdmin = ({ mode, values, valuesOptions, handleSubmit }) => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group controlId="formName" className="mb-3">
+              <Form.Group className="mb-3">
                 <Form.Label>Precio</Form.Label>
                 <Form.Control
                   type="number"
@@ -85,7 +85,7 @@ const ProductFormAdmin = ({ mode, values, valuesOptions, handleSubmit }) => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group controlId="formName" className="mb-3">
+              <Form.Group className="mb-3">
                 <Form.Label>Descripción</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -116,11 +116,11 @@ const ProductFormAdmin = ({ mode, values, valuesOptions, handleSubmit }) => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group controlId="formName" className="mb-3">
+              <Form.Group className="mb-3">
                 <Form.Label>Url de Imagen</Form.Label>
                 <Form.Control
                   type="text"
-                  name="title"
+                  name="image"
                   value={form.values?.image}
                   isInvalid={form.errors?.image}
                   onChange={handleChange}

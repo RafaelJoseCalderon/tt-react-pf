@@ -16,8 +16,8 @@ export const useProductsActions = () => {
 
   const notifyOrError = (error, name) => {
     if (error?.type === "ApiError") {
-      toast.toast(
-        `Error en la operación. Código: ${error.status}`
+      toast.error(
+        `Error en la operación. Código: ${error}`
       );
     } else {
       setErrors(prev => ({ ...prev, [name]: error }));
